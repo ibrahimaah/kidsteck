@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -24,6 +26,16 @@ return new class extends Migration
             $table->foreignId('parent_id')->nullable()->constrained('users');
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin'),
+            'role_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
