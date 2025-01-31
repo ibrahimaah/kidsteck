@@ -27,15 +27,22 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert([
+        DB::table('users')->insert([[
             'name' => 'Admin',
             'username' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
             'role_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
-        ]);
+        ],
+        [   'name' => 'Ahmad',
+            'username' => 'ahmad',
+            'email' => 'ahmad@gmail.com',
+            'password' => Hash::make('123456'),
+            'role_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now()]]);
     }
 
     /**

@@ -1,14 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container p-5">
+
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>إدارة المستخدمين</h2>
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
+        <h2 class="display-6 text-primary">إدارة المستخدمين</h2>
+        <a href="{{ route('user_roles') }}" class="btn btn-primary">إضافة مستخدم</a>
     </div>
+    
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
     <table class="table table-striped">
         <thead>
             <tr>
