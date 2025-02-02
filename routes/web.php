@@ -21,6 +21,14 @@ Route::get('admin/login', [AuthController::class,'showLoginForm'])->name('admin.
 Route::post('admin/login', [AuthController::class,'authenticate'])->name('admin.authenticate');
 Route::post('admin/logout', [AuthController::class,'logout'])->name('admin.logout');
 
-Route::resource('admin/users', UserController::class);
+// Route::resource('admin/users', UserController::class);
+Route::get('admin/users',[UserController::class,'index'])->name('admin.users');
+Route::get('admin/users/{user}',[UserController::class,'edit'])->name('users.edit');
+Route::put('admin/users/{user}',[UserController::class,'update'])->name('users.update');
+Route::delete('admin/users/{user}',[UserController::class,'destroy'])->name('users.destroy');
 Route::get('admin/user-roles',[UserController::class,'user_roles'])->name('user_roles');
 Route::get('admin/create-user-by-role/{role}',[UserController::class,'create_user_by_role'])->name('create_user_by_role');
+
+Route::get('tmp',function(){
+    return view('admin.tmp.index');
+});
