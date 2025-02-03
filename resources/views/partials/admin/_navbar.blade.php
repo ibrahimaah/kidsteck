@@ -3,6 +3,7 @@
 
         <a class="navbar-brand" href="{{ route('admin_dashboard') }}">
             KIDSTECK
+            {{-- <img src="{{ asset('imgs/logo.png') }}" class="img-fluid" style="width: 100px;height:50px"> --}}
         </a>
 
         <button class="navbar-toggler" 

@@ -2,7 +2,8 @@
 @section('content')
  <!-- Welcome Section -->
  <div class="welcome-section">
-    <h1>مرحبًا بك في لوحة التحكم</h1> 
+    <h1>مرحبًا بك في لوحة التحكم <img src="{{ asset('imgs/logo.png') }}" class="img-fluid w-25"></h1> 
+
 </div>
 
 <!-- Cards Section -->

@@ -22,11 +22,13 @@ Route::post('admin/login', [AuthController::class,'authenticate'])->name('admin.
 Route::post('admin/logout', [AuthController::class,'logout'])->name('admin.logout');
 
 // Route::resource('admin/users', UserController::class);
+Route::get('create-user-child',[UserController::class,'create_user_child'])->name('create_user_child');
 Route::get('admin/users',[UserController::class,'index'])->name('admin.users');
+Route::post('store-user',[UserController::class,'store'])->name('store_user');
 Route::get('admin/users/{user}',[UserController::class,'edit'])->name('users.edit');
 Route::put('admin/users/{user}',[UserController::class,'update'])->name('users.update');
 Route::delete('admin/users/{user}',[UserController::class,'destroy'])->name('users.destroy');
-Route::get('admin/user-roles',[UserController::class,'user_roles'])->name('user_roles');
+Route::get('create-user',[UserController::class,'create'])->name('create_user');
 Route::get('admin/create-user-by-role/{role}',[UserController::class,'create_user_by_role'])->name('create_user_by_role');
 
 Route::get('tmp',function(){

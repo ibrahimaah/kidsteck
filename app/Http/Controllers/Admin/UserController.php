@@ -12,39 +12,40 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('role')->where('role_id','!=',1)->paginate(10);
+        $users = User::with('role')->where('role_id','!=',1)
+                                   ->where('role_id','!=',4)
+                                   ->paginate(10);
+                                   
         return view('admin.users.index', compact('users'));
     }
 
-    public function user_roles()
-    {
-        $roles = Role::all();
-        return view('admin.users.user_roles', compact('roles'));
-    }
-
-    public function create_user_by_role($role)
-    {
-        
-    }
+     
     public function create()
     {
-        
+        return view('admin.users.create');
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role_id' => 'required|exists:roles,id'
+        // Validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            'role_id' => 'required|integer|exists:roles,id',
         ]);
-        
-        $validated['password'] = Hash::make($validated['password']);
-        User::create($validated);
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+        // Create User
+        User::create([
+            'name' => $validatedData['name'],
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'role_id' => $validatedData['role_id'],
+        ]);
+
+        return redirect()->back()->with('success', 'تم إضافة المستخدم بنجاح');
     }
 
     public function edit(User $user)
@@ -77,6 +78,11 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+        return redirect()->back()->with('success', 'تم حذف المستخدم بنجاح');
+    }
+
+    public function create_user_child()
+    {
+
     }
 }

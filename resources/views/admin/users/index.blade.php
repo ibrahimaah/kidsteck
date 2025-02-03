@@ -1,11 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container p-5">
+ 
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-6 text-primary">إدارة المستخدمين</h2>
-        <a href="{{ route('user_roles') }}" class="btn btn-primary">إضافة مستخدم</a>
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <h1>إدارة المستخدمين</h1> 
+    </div>
+
+    <div class="d-flex justify-content-end mb-3"> 
+        <a href="{{ route('create_user') }}" class="btn btn-primary">إضافة مستخدم جديد</a>
     </div>
     
     @if(session('success'))
@@ -32,6 +36,9 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ __($user->role->name) }}</td>
                     <td>
+                        @if($user->role_id == 3)
+                        <a href="{{ route('create_user_child') }}" class="btn btn-primary btn-sm">إضافة طفل</a>
+                        @endif
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">تعديل</a>
                         <form action="{{ route('users.destroy', $user) }}" 
                               method="POST" 
@@ -47,5 +54,5 @@
         </tbody>
     </table>
     {{ $users->links() }}
-</div>
+
 @endsection
