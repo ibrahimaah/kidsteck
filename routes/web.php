@@ -24,7 +24,5 @@ Route::post('admin/login', [AuthController::class,'authenticate'])->name('admin.
 Route::post('admin/logout', [AuthController::class,'logout'])->name('admin.logout');
 
 
-
-
-
- 
+//Users Management Section in Dashboard
+Route::get('admin/users',[UserController::class,'index'])->name('admin.users'); 
