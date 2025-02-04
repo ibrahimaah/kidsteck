@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', [AuthController::class,'showLoginForm'])->name('admin.loginForm');
 //Authentication Admin Dashboard
 Route::get('admin', [DashboardController::class,'index'])->name('admin_dashboard')->middleware('auth');
 Route::get('admin/login', [AuthController::class,'showLoginForm'])->name('admin.loginForm');
