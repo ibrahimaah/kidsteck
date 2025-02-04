@@ -25,17 +25,6 @@ Route::post('admin/logout', [AuthController::class,'logout'])->name('admin.logou
 
 
 
-//Users Management Section in Dashboard
-Route::get('admin/users',[UserController::class,'index'])->name('admin.users');
-Route::get('users/{user}', [UserController::class, 'show'])->name('show_user');
-Route::get('create-user',[UserController::class,'create'])->name('create_user');
-Route::post('store-user',[UserController::class,'store'])->name('store_user');
-Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('edit_user');
-Route::put('users/{user}', [UserController::class, 'update'])->name('update_user');
-Route::delete('admin/users/{user}',[UserController::class,'delete'])->name('delete_user');
-///////////////////////////////////////////////////////////////////////////////////
 
-
-// Route::get('create-user-child',[UserController::class,'create_user_child'])->name('create_user_child');
 
  
