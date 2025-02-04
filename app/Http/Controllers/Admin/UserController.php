@@ -16,7 +16,7 @@ class UserController extends Controller
                                    ->where('role_id','!=',4)
                                    ->paginate(10);
                                    
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', ['users' => $users]);
     }
 
      
@@ -54,33 +54,54 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:users,username,' . $user->id,
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:6',
-            'role_id' => 'required|exists:roles,id'
+        // Validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed', // Optional if password is not updated
+            'role_id' => 'required|integer|exists:roles,id',
         ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update the user details
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
         
-        if ($request->filled('password')) {
-            $validated['password'] = Hash::make($validated['password']);
-        } else {
-            unset($validated['password']);
+        // Update password only if it's provided
+        if ($validatedData['password']) {
+            $user->password = Hash::make($validatedData['password']);
         }
+        
+        $user->role_id = $validatedData['role_id'];
 
-        $user->update($validated);
+        // Save the updated user
+        $user->save();
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        // Redirect with success message
+        return redirect()->back()->with('success', 'تم تحديث بيانات المستخدم بنجاح');
     }
 
-    public function destroy(User $user)
+    public function delete($id)
     {
+        // Find the user by ID
+        $user = User::findOrFail($id);
         $user->delete();
         return redirect()->back()->with('success', 'تم حذف المستخدم بنجاح');
     }
 
+    public function show($id)
+    {
+         // Find the user by ID
+        $user = User::findOrFail($id);
+        // Return the show view with user data
+        return view('admin.users.show', ['user' => $user]);
+    }
     public function create_user_child()
     {
 

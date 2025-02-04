@@ -36,11 +36,9 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ __($user->role->name) }}</td>
                     <td>
-                        @if($user->role_id == 3)
-                        <a href="{{ route('create_user_child') }}" class="btn btn-primary btn-sm">إضافة طفل</a>
-                        @endif
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">تعديل</a>
-                        <form action="{{ route('users.destroy', $user) }}" 
+                        <a href="{{ route('show_user',['user' => $user->id]) }}" class="btn btn-secondary btn-sm">عرض</a>
+                        <a href="{{ route('edit_user', $user->id) }}" class="btn btn-warning btn-sm">تعديل</a>
+                        <form action="{{ route('delete_user', $user->id) }}" 
                               method="POST" 
                               class="d-inline" 
                               onsubmit="return confirm('هل أنت متأكد؟')">
@@ -48,6 +46,9 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                         </form>
+                        {{-- @if($user->role_id == 3)
+                        <a href="{{ route('create_user_child') }}" class="btn btn-primary btn-sm">إضافة طفل</a>
+                        @endif --}}
                     </td>
                 </tr>
             @endforeach
