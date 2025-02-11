@@ -40,14 +40,17 @@
                         <a href="{{ route('create_user_child') }}" class="btn btn-primary btn-sm">إضافة طفل</a>
                         @endif
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">تعديل</a>
+                        
+                        @if(auth()->id() !== $user->id)
                         <form action="{{ route('users.destroy', $user) }}" 
-                              method="POST" 
-                              class="d-inline" 
-                              onsubmit="return confirm('هل أنت متأكد؟')">
+                                method="POST" 
+                                class="d-inline" 
+                                onsubmit="return confirm('هل أنت متأكد؟')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                         </form>
+                        @endif 
                     </td>
                 </tr>
             @endforeach

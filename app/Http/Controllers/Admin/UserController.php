@@ -12,9 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('role')->where('role_id','!=',1)
-                                   ->where('role_id','!=',4)
-                                   ->paginate(10);
+        $users = User::with('role')->where('role_id','!=',4)->paginate(10);
                                    
         return view('admin.users.index', compact('users'));
     }

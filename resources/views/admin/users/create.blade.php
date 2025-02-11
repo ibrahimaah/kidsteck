@@ -62,6 +62,7 @@
                 <label for="role_id" class="form-label">صلاحية المستخدم</label>
                 <select class="form-select" id="role_id" name="role_id" required>
                     <option value="">اختر صلاحية المستخدم</option>
+                    <option value="1">أدمن</option> 
                     <option value="2">متطوع</option> 
                     <option value="3">أب</option> 
                 </select>
