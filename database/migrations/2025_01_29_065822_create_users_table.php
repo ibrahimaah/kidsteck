@@ -23,6 +23,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('role_id')->constrained();
             $table->integer('age')->nullable();
+            $table->enum('preferred_language', ['java', 'python', 'javascript','php'])->nullable(); 
+            $table->json('interests')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('users');
             $table->timestamps();
         });
