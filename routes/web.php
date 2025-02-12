@@ -35,7 +35,7 @@ Route::post('update-user-child/{id}',[UserController::class,'update_user_child']
 Route::get('admin/users',[UserController::class,'index'])->name('admin.users');
 Route::post('store-user',[UserController::class,'store'])->name('store_user');
 Route::get('edit-user/{id}',[UserController::class,'edit'])->name('edit_user');
-Route::put('admin/users/{user}',[UserController::class,'update'])->name('users.update');
+Route::put('update-user/{id}',[UserController::class,'update'])->name('update_user');
 Route::delete('admin/users/{user}',[UserController::class,'destroy'])->name('users.destroy');
 
 Route::get('create-user',[UserController::class,'create'])->name('create_user');

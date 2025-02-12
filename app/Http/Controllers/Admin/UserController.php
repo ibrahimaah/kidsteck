@@ -46,10 +46,11 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'تم إضافة المستخدم بنجاح');
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', ['user' => $user , 'roles' => $roles]);
     }
 
     public function update(Request $request, User $user)
