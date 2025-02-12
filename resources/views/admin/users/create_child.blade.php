@@ -108,9 +108,8 @@
 
         <!-- Submit Button -->
         <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary w-100">إضافة مستخدم</button>
-            </div>
+            <button type="submit" class="btn btn-primary w-25">حفظ</button>
+            <a href="{{ url()->previous() }}" class="btn btn-danger w-25 mx-2">رجوع</a>
         </div>
     </form>
 </div>

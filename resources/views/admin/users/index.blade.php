@@ -39,7 +39,13 @@
                         @if($user->role_id == 3)
                         <a href="{{ route('create_user_child') }}" class="btn btn-primary btn-sm">إضافة طفل</a>
                         @endif
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">تعديل</a>
+
+                        @if($user->role_id == 4)
+                        <a href="{{ route('edit_user_child',['id' => $user->id]) }}" class="btn btn-warning btn-sm">تعديل</a>
+                        @else    
+                        <a href="{{ route('edit_user', ['id' => $user->id]) }}" class="btn btn-warning btn-sm">تعديل</a>
+                        @endif
+                        
                         
                         @if(auth()->id() !== $user->id)
                         <form action="{{ route('users.destroy', $user) }}" 

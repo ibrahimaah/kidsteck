@@ -129,4 +129,43 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'تم إضافة المستخدم بنجاح');
     }
+
+    public function edit_user_child($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.edit_child', compact('user'));
+    }
+
+    public function update_user_child(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'profile_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|unique:users,username,' . $id . '|max:255',
+            'email' => 'required|email|unique:users,email,' . $id . '|max:255',
+            'age' => 'required|integer|min:0|max:100',
+            'preferred_language' => 'required|in:java,javascript,python,php',
+            'interests' => 'required|array',
+            'interests.*' => 'in:sports,music,reading',
+        ]);
+
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->age = $validatedData['age'];
+        $user->preferred_language = $validatedData['preferred_language'];
+        $user->interests = json_encode($validatedData['interests']);
+
+        if ($request->hasFile('profile_img')) {
+            $user->clearMediaCollection('profile_images');
+            $user->addMedia($request->file('profile_img'))->toMediaCollection('profile_images');
+        }
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'تم تحديث المستخدم بنجاح');
+    }
+
 }
