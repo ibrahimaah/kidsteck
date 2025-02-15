@@ -71,7 +71,7 @@
     
         <div class="row">
             <button type="submit" class="btn btn-primary w-25">حفظ</button>
-            <a href="{{ url()->previous() }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+            <a href="{{ route('admin.users') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
         </div>
     </form>
     

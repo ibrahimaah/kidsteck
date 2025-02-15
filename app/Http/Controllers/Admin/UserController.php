@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $users = User::all();
                                    
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', ['users' =>$users]);
     }
 
      
@@ -88,7 +88,7 @@ class UserController extends Controller
     public function store_user_child(Request $request)
     {
         $validatedData = $request->validate([
-            'profile_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'profile_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username|max:255',
             'email' => 'required|email|unique:users,email|max:255',
@@ -123,10 +123,10 @@ class UserController extends Controller
         $user->save();
 
         // Add the uploaded file to the media library
-        if ($request->hasFile('profile_image')) 
-        {
-            $user->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
-        }
+        // if ($request->hasFile('profile_image')) 
+        // {
+        //     $user->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
+        // }
 
         return redirect()->back()->with('success', 'تم إضافة المستخدم بنجاح');
     }
@@ -142,7 +142,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $validatedData = $request->validate([
-            'profile_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'profile_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username,' . $id . '|max:255',
             'email' => 'required|email|unique:users,email,' . $id . '|max:255',
@@ -159,10 +159,10 @@ class UserController extends Controller
         $user->preferred_language = $validatedData['preferred_language'];
         $user->interests = json_encode($validatedData['interests']);
 
-        if ($request->hasFile('profile_img')) {
-            $user->clearMediaCollection('profile_images');
-            $user->addMedia($request->file('profile_img'))->toMediaCollection('profile_images');
-        }
+        // if ($request->hasFile('profile_img')) {
+        //     $user->clearMediaCollection('profile_images');
+        //     $user->addMedia($request->file('profile_img'))->toMediaCollection('profile_images');
+        // }
 
         $user->save();
 

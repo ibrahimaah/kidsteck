@@ -31,12 +31,12 @@
     <form action="{{ route('store_user_child') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12 mb-3">
                 <label class="form-label">صورة الطفل</label>
                 <input type="file" name="profile_img" class="form-control">
             </div>
-        </div>
+        </div> --}}
         <!-- Row 1: Name and Username -->
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -109,7 +109,7 @@
         <!-- Submit Button -->
         <div class="row">
             <button type="submit" class="btn btn-primary w-25">حفظ</button>
-            <a href="{{ url()->previous() }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+            <a href="{{ route('admin.users') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
         </div>
     </form>
 </div>

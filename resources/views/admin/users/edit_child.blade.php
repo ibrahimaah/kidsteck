@@ -28,7 +28,7 @@
     <form action="{{ route('update_user_child', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12 mb-3">
                 <label class="form-label">صورة الطفل</label>
                 <input type="file" name="profile_img" class="form-control">
@@ -36,7 +36,7 @@
                     <img src="{{ $user->getFirstMediaUrl('profile_images') }}" alt="صورة الطفل" width="100" class="mt-2">
                 @endif
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -99,7 +99,7 @@
 
         <div class="row">
             <button type="submit" class="btn btn-primary w-25">حفظ</button>
-            <a href="{{ url()->previous() }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+            <a href="{{ route('admin.users') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
         </div>
     </form>
 </div>
