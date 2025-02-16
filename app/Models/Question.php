@@ -9,4 +9,14 @@ class Question extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

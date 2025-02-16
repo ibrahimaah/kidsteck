@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('story_parts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
-            $table->string('option_text');
-            $table->boolean('is_correct')->default(false); // Marks the correct answer
+            $table->foreignId('story_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->integer('order'); // To sort parts 
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('options');
+        Schema::dropIfExists('story_parts');
     }
 };

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\StoryPartController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,17 @@ Route::post('store-user',[UserController::class,'store'])->name('store_user');
 Route::get('edit-user/{id}',[UserController::class,'edit'])->name('edit_user');
 Route::put('update-user/{id}',[UserController::class,'update'])->name('update_user');
 Route::delete('admin/users/{user}',[UserController::class,'destroy'])->name('users.destroy');
+
+//Stories
+Route::get('admin/stories',[StoryController::class,'index'])->name('admin.stories');
+Route::get('create-story',[StoryController::class,'create'])->name('admin.stories.create');
+Route::get('edit-story/{id}',[StoryController::class,'edit'])->name('admin.stories.edit');
+Route::post('store-story',[StoryController::class,'store'])->name('admin.stories.store');
+Route::post('update-story/{id}',[StoryController::class,'update'])->name('admin.stories.update');
+Route::post('delete-story/{id}',[StoryController::class,'delete'])->name('admin.stories.delete');
+
+
+
 
 Route::get('create-user',[UserController::class,'create'])->name('create_user');
 Route::get('admin/create-user-by-role/{role}',[UserController::class,'create_user_by_role'])->name('create_user_by_role');

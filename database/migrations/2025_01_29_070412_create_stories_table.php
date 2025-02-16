@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stories', function (Blueprint $table) {
+        Schema::create('stories', function (Blueprint $table) 
+        {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('target_age');
             $table->boolean('is_proposed_by_parent')->default(false);
             $table->foreignId('parent_id')->nullable()->constrained('users');
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->constrained(); 
             $table->boolean('is_active')->default(false);
         });
     }

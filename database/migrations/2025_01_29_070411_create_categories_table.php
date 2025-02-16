@@ -19,11 +19,11 @@ return new class extends Migration
 
         DB::table('categories')->insert(
             [
-                ['id'=>1,'name'=>'Nature'],
-                ['id'=>2,'name'=>'Animales'],
-                ['id'=>3,'name'=>'Chess'],
-                ['id'=>4,'name'=>'Swimming'],
-                ['id'=>5,'name'=>'Football'],
+                ['id'=>1,'name'=>'طبيعة'],
+                ['id'=>2,'name'=>'حيوانات'],
+                ['id'=>3,'name'=>'خيال علمي'],
+                ['id'=>4,'name'=>'رسوم متحركة'],
+                ['id'=>5,'name'=>'رياضة'],
             ]
         );
     }

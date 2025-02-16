@@ -1,0 +1,63 @@
+@extends('layouts.admin')
+
+@section('content')
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <h1>إدارة القصص</h1> 
+    </div>
+
+    <div class="d-flex justify-content-end mb-3"> 
+        <a href="{{ route('admin.stories.create') }}" class="btn btn-primary">إضافة قصة جديدة</a>
+    </div>
+    
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>صورة الغلاف</th>
+                <th>العنوان</th>
+                <th>الوصف</th>
+                <th>الحالة</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($stories as $story)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>
+                        @if($story->hasMedia('story_cover_images'))
+                            <img src="{{ $story->getFirstMediaUrl('story_cover_images', 'thumb') }}" width="70" height="70" class="rounded">
+                        @else
+                            <span class="text-muted">لا توجد صورة</span>
+                        @endif
+                    </td>
+                    <td>{{ $story->title }}</td>
+                    <td>{{ Str::limit($story->description, 50) }}</td>
+                    <td>
+                        <span class="badge bg-{{ $story->is_active ? 'success' : 'secondary' }}">
+                            {{ $story->is_active  ? 'منشورة' : 'مسودة' }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.stories.edit', ['id' => $story->id]) }}" class="btn btn-warning btn-sm">تعديل</a>
+                        
+                        <form action="{{ route('admin.stories.delete', ['id' => $story->id]) }}" 
+                                method="POST" 
+                                class="d-inline" 
+                                onsubmit="return confirm('هل أنت متأكد؟')">
+                            @csrf 
+                            <button type="submit" class="btn btn-danger btn-sm">حذف</button>
+                        </form> 
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@endsection
