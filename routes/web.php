@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\StoryPartController;
+use App\Http\Controllers\Admin\StoryPartController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +48,13 @@ Route::post('store-story',[StoryController::class,'store'])->name('admin.stories
 Route::post('update-story/{id}',[StoryController::class,'update'])->name('admin.stories.update');
 Route::post('delete-story/{id}',[StoryController::class,'delete'])->name('admin.stories.delete');
 
+//Story Parts
+Route::get('admin/story-parts/{story_id}',[StoryPartController::class,'index'])->name('admin.story_parts');
+Route::get('create-story-part/{story_id}',[StoryPartController::class,'create'])->name('admin.story_parts.create');
+Route::get('edit-story-part/{id}',[StoryPartController::class,'edit'])->name('admin.story_parts.edit');
+Route::post('store-story-part',[StoryPartController::class,'store'])->name('admin.story_parts.store');
+Route::post('update-story-part/{id}',[StoryPartController::class,'update'])->name('admin.story_parts.update');
+Route::post('delete-story-part/{id}',[StoryPartController::class,'delete'])->name('admin.story_parts.delete');
 
 
 

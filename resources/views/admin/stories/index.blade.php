@@ -54,6 +54,8 @@
                             @csrf 
                             <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                         </form> 
+
+                        <a href="{{ route('admin.story_parts',['story_id' => $story->id]) }}" class="btn btn-sm btn-secondary">إدارة القصة</a>
                     </td>
                 </tr>
             @endforeach
