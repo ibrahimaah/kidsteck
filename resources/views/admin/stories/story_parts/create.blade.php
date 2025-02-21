@@ -35,11 +35,11 @@
             </div> 
             <div class="col-md-5 mb-3">
                 <label class="form-label">رفع فيديو الجزء</label>
-                <input type="file" class="form-control" name="video" required>
+                <input type="file" class="form-control" name="video" required accept="video/*">
             </div>
             <div class="col-md-2 mb-3">
                 <label class="form-label">رقم الجزء</label>
-                <input type="number" class="form-control" name="order" min="1" required>
+                <input type="number" class="form-control text-center" name="order" min="1" value="{{ $current_order }}" required readonly>
             </div> 
         </div>
 

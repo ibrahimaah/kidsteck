@@ -19,7 +19,10 @@ class StoryPartController extends Controller
 
     public function create($story_id)
     {
-        return view('admin.stories.story_parts.create',['story_id' => $story_id]);
+        $latestOrder = StoryPart::where('story_id', $story_id)->max('order') ?? 0;
+        $current_order = $latestOrder + 1;
+        
+        return view('admin.stories.story_parts.create',['story_id' => $story_id,'current_order' => $current_order]);
     }
 
  

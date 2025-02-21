@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\StoryController;
+use App\Http\Controllers\Admin\StoryController as AdminStoryController;
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StoryPartController;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('tmp',function(){
-    $user = User::find(3);
-    dd($user->getFirstMediaUrl('profile_images'));
-});
+
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('admin', [DashboardController::class,'index'])->name('admin_dashboard')->middleware('auth');
 Route::get('admin/login', [AuthController::class,'showLoginForm'])->name('admin.loginForm');
@@ -41,12 +41,12 @@ Route::put('update-user/{id}',[UserController::class,'update'])->name('update_us
 Route::delete('admin/users/{user}',[UserController::class,'destroy'])->name('users.destroy');
 
 //Stories
-Route::get('admin/stories',[StoryController::class,'index'])->name('admin.stories');
-Route::get('create-story',[StoryController::class,'create'])->name('admin.stories.create');
-Route::get('edit-story/{id}',[StoryController::class,'edit'])->name('admin.stories.edit');
-Route::post('store-story',[StoryController::class,'store'])->name('admin.stories.store');
-Route::post('update-story/{id}',[StoryController::class,'update'])->name('admin.stories.update');
-Route::post('delete-story/{id}',[StoryController::class,'delete'])->name('admin.stories.delete');
+Route::get('admin/stories',[AdminStoryController::class,'index'])->name('admin.stories');
+Route::get('create-story',[AdminStoryController::class,'create'])->name('admin.stories.create');
+Route::get('edit-story/{id}',[AdminStoryController::class,'edit'])->name('admin.stories.edit');
+Route::post('store-story',[AdminStoryController::class,'store'])->name('admin.stories.store');
+Route::post('update-story/{id}',[AdminStoryController::class,'update'])->name('admin.stories.update');
+Route::post('delete-story/{id}',[AdminStoryController::class,'delete'])->name('admin.stories.delete');
 
 //Story Parts
 Route::get('admin/story-parts/{story_id}',[StoryPartController::class,'index'])->name('admin.story_parts');
@@ -61,6 +61,7 @@ Route::post('delete-story-part/{id}',[StoryPartController::class,'delete'])->nam
 Route::get('create-user',[UserController::class,'create'])->name('create_user');
 Route::get('admin/create-user-by-role/{role}',[UserController::class,'create_user_by_role'])->name('create_user_by_role');
 
-// Route::get('tmp',function(){
-//     return view('admin.tmp.index');
-// });
+ //////////////////////////////////////////////////////////////////////////////
+ //// -- Site Routes
+ //////////////////////////////////////////////////////////////////////////////
+ Route::get('stories',[StoryController::class,'index'])->name('stories');

@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-2 mb-3">
                 <label class="form-label">رقم الجزء</label>
-                <input type="number" class="form-control" name="order" value="{{ old('order', $storyPart->order) }}" min="1" required>
+                <input type="number" class="form-control" name="order" value="{{ old('order', $storyPart->order) }}" min="1" readonly required>
             </div> 
         </div>
 
