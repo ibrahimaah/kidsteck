@@ -35,10 +35,14 @@
 /* =======================
    DEFULT STYLE START
 ==========================*/
+:root {
+    --default-font-family : 'Baloo Bhaijaan 2', sans-serif !important;
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: var(--default-font-family);
 }
 body{
     overflow-x: hidden;
@@ -292,7 +296,8 @@ header .menu .dropdown .dropdown-menu .dropdown .dropdown-menu {
 }
 .header-box-single h4{
     font-size: 25px;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
 }
 .header-box-single p{
@@ -639,7 +644,8 @@ header .menu .dropdown .dropdown-menu .dropdown .dropdown-menu {
 .activities-single-box h4{
     font-size: 20px;
     color: #231F20;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
     margin-bottom: 20px;
     transition: .5s all ease-in-out;
@@ -792,7 +798,8 @@ i.fa.fa-angle-right {
 }
 .slider-text h4{
     font-size: 25px;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
     transition: .5s ease-in-out;
 }
@@ -985,7 +992,8 @@ i.fa.fa-angle-right {
 .testimonial .testimonial_single .reviewer h4 {
     text-transform: capitalize;
     font-size: 24px;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
     color: #EB6025;
 }
@@ -1206,7 +1214,8 @@ i.fa-solid.fa-eye{color: #fff;transition: .5s;}
 }
 .teacher-slider-item h4{
     font-size: 20px;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
     margin-bottom: 0;
 }
@@ -1330,7 +1339,8 @@ i.fa-solid.fa-eye{color: #fff;transition: .5s;}
 .blog-text h4{
     font-size: 20px;
     color: #EB6025;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
 }
 .blog-text p{
@@ -1407,7 +1417,8 @@ i.fa-solid.fa-eye{color: #fff;transition: .5s;}
     color: #fff;
     font-weight: 600;
     font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     -webkit-box-shadow: 0px 0px 15px 0px rgba(12,198,245,1);
     -moz-box-shadow: 0px 0px 15px 0px rgba(12,198,245,1);
     box-shadow: 0px 0px 15px 0px rgba(12,198,245,1);
@@ -1715,7 +1726,8 @@ homepage-two-bottom start
     font-size: 22px;
     text-transform: uppercase;
     margin: 30px 0px 15px 0px;
-    font-family: 'Roboto', sans-serif;
+    /* /*font-family: 'Roboto', sans-serif;*/ 
+    font-family: var(--default-font-family);
     font-weight: 600;
 }
 .box-icon.two{
@@ -2206,7 +2218,8 @@ header.homepage-two.homepage-three.header:before{
 }
 .service-slider.owl-carousel.owl-theme .slider-iteam h4{
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+font-family:var(--default-font-family);
     padding: 15px 0px 10px 0px;
     transition: .5s;
 }
@@ -2255,7 +2268,8 @@ header.homepage-two.homepage-three.header:before{
     visibility: visible;     
 }
 .pagetwo.our-classes.homepage-three .classes-slider-item .slider-img .pagetwo-price h4{
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+font-family:var(--default-font-family);
     font-size: 25px;
     font-weight: 600;
     color: #BF1A88; 
@@ -2409,7 +2423,8 @@ header.homepage-two.homepage-three.header:before{
 .price-main .price-top .price h3{
     font-size: 34px;
     color: #E669A8;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+font-family:var(--default-font-family);
     font-weight: 700;
 }
 .price-main .price-top .price h3 span{
@@ -2428,7 +2443,8 @@ header.homepage-two.homepage-three.header:before{
 }
 .single-price-table .price-list ul li{
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+font-family:var(--default-font-family);
     margin-bottom: 15px;
     color: #231F20;
 }
@@ -2742,7 +2758,8 @@ header.about-page .header-text h1{
 .accordion-button, .tab-content .tab-pane h4{
     background: transparent;
     font-size: 22px;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+font-family:var(--default-font-family);
     font-weight: 600;
 }
 .accordion-button:not(.collapsed)::after{
@@ -2972,7 +2989,8 @@ button:focus{
     box-shadow: 0px 0px 20px 0px rgb(237 237 237);
 }
 .single-blog-post h2{
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: var(--default-font-family);
     font-weight: 700;
     line-height: 50px;
 }
@@ -3038,4 +3056,8 @@ button:focus{
 .blog-form input[type="submit"]{
     background:  #EB6025;
     color: #fff;
+}
+.owl-stage 
+{
+    margin : auto !important;
 }

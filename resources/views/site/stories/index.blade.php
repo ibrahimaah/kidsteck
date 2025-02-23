@@ -2,6 +2,11 @@
 
 @section('content')
 
+<style>
+    .slider-title i {
+    /* font-size: 1.2rem; */
+}
+</style>
  
 <section class="pagetwo our-classes" dir="ltr">
     <div class="container">
@@ -26,15 +31,51 @@
                             <h4>{{ $story->title }}</h4>
                             <p>{{ $story->description }}</p>
                         </div>
-                        <div class="slider-title d-flex justify-content-between">
-                            <div class="title-left">
-                                <span>الفئة العمرية المستهدفة</span>
-                                <span>{{ $story->target_age }}</span>
+                        <div class="slider-title">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between p-md-1 align-items-center">
+
+                                        <div class="align-self-center">
+                                            <h2 class="h5 mb-0">{{ $story->target_age }}</h2>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h5 class="mb-0">الفئة العمرية</h5> 
+                                            </div>
+                                            <div>
+                                                <i class="fas fa-child text-info fa-2x me-4"></i>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
                             </div>
-                            <div class="title-right">
-                                <span>عدد الأجزاء</span>
-                                <span>{{ $story->parts->count() }}</span>
-                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between p-md-1 align-items-center">
+
+                                        <div class="align-self-center">
+                                            <h2 class="h5 mb-0">{{ $story->parts->count() }}</h2>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h5 class="mb-0">عدد الأجزاء</h5> 
+                                            </div>
+                                            <div>
+                                                <i class="fas fa-book text-success fa-2x me-4"></i>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                         <div class="slider-btn">
                             <a class="btn btn-primary kids-active-btn" href="#">ابدأ</a>

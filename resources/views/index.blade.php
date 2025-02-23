@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class="col-12 col-md-12 col-lg-12">
 				<div class="section-title">
-					<h2>Kidsteck حول </h2>
+					<h2>حول Kidsteck  </h2>
 				</div>
 			</div>
             <div class="col-12 col-md-6 col-lg-6">
