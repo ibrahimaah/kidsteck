@@ -5,9 +5,21 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
+                        @guest
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary kids-active-btn" href="#">إنشاء حساب</a>
+                            <a class="nav-link btn btn-primary kids-active-btn" href="{{ route('register') }}">إنشاء حساب</a>
                         </li>
+                        @else 
+                        <li class="nav-item">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <a class="nav-link btn btn-primary kids-active-btn" href="#" 
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                تسجيل الخروج
+                            </a>
+                        </li>                        
+                        @endguest
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
                                 href="{{ route('home') }}">الصفحة الرئيسية</a>

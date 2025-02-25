@@ -4,7 +4,7 @@
 
     <!-- Welcome Section -->
     <div class="welcome-section">
-        <h1>إدارة أجزاء القصة: {{ $story->title }}</h1>
+        <h1>إدارة أجزاء القصة: <span class="text-light">{{ $story->title }}</span></h1>
     </div>
 
     <div class="d-flex justify-content-end mb-3"> 

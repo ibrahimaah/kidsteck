@@ -1,7 +1,12 @@
+:root {
+    --default-font-family : 'Baloo Bhaijaan 2', sans-serif !important;
+}
+
 body {
     background-color: #f8f9fa;
     padding-top: 70px;
-    font-family: 'Tajawal', sans-serif;
+    /* font-family: 'Tajawal', sans-serif; */
+    font-family: var(--default-font-family);
 }
 .sidebar {
     height: 100vh;

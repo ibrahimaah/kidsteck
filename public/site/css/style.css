@@ -756,6 +756,13 @@ i.fa.fa-angle-right {
     color: #fff;
     transition: .5s ease-in-out;
 }
+
+/* #story_desc:hover
+{
+    color: #fff;
+    transition: .5s ease-in-out;
+    background:#EB6025;
+} */
 .classes-slider-item:hover img{
     transform: scale(1.2);
     transition: .5s ease-in-out;

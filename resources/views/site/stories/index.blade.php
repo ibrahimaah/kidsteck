@@ -26,28 +26,24 @@
                     <div class="slider-img">
                         <img src="{{ $story->getFirstMediaUrl('story_cover_images') }}" alt="Story Cover" class="img-fluid">
                     </div>
-                    <div class="slider-description">   
+                    <div class="slider-description d-flex flex-column">   
                         <div class="slider-text">
                             <h4>{{ $story->title }}</h4>
                             <p>{{ $story->description }}</p>
                         </div>
-                        <div class="slider-title">
+                        <div class="slider-title p-0" id="story_desc">
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between p-md-1 align-items-center">
+                                <div class="card-body p-0">
+                                    <div class="row w-100 justify-content-between align-items-center">
 
-                                        <div class="align-self-center">
+                                        <div class="col align-self-center">
                                             <h2 class="h5 mb-0">{{ $story->target_age }}</h2>
                                         </div>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-
-                                            <div>
-                                                <h5 class="mb-0">الفئة العمرية</h5> 
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-child text-info fa-2x me-4"></i>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            <h5 class="mb-0">الفئة العمرية</h5> 
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <i class="fas fa-child text-info fa-2x"></i>
                                         </div>
 
                                         
