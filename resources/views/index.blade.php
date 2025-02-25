@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+ 
+
 <div class="container">
     <div class="homepage-two-bottom">
         <div class="row">

@@ -22,17 +22,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//////////////////////////////////////////////////////////////////////////////
+//// -- Site Routes
+//////////////////////////////////////////////////////////////////////////////
 
-Route::middleware('guest')->group(function () 
-{
+Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.loginForm');
     Route::post('admin/login', [AuthController::class, 'authenticate'])->name('admin.authenticate');
 });
 
 
-Route::middleware('admin.auth')->group(function () 
-{
-    
+Route::middleware('admin.auth')->group(function () {
+
     Route::get('admin', [DashboardController::class, 'index'])->name('admin_dashboard');
     Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
     // Route::resource('admin/users', UserController::class);
@@ -63,28 +64,28 @@ Route::middleware('admin.auth')->group(function ()
     Route::post('update-story-part/{id}', [StoryPartController::class, 'update'])->name('admin.story_parts.update');
     Route::post('delete-story-part/{id}', [StoryPartController::class, 'delete'])->name('admin.story_parts.delete');
 
-
-
     Route::get('admin/create-user', [UserController::class, 'create'])->name('create_user');
     Route::get('admin/create-user-by-role/{role}', [UserController::class, 'create_user_by_role'])->name('create_user_by_role');
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    //// -- Site Routes
-    //////////////////////////////////////////////////////////////////////////////
-    Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
-    
 });
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('stories', [StoryController::class, 'index'])->name('stories');
 
+//////////////////////////////////////////////////////////////////////////////
+//// -- Site Routes
+//////////////////////////////////////////////////////////////////////////////
 
-Route::middleware('guest')->group(function () 
-{
+Route::middleware('guest')->group(function () {
     Route::get('login', [SiteAuthController::class, 'showLoginForm'])->name('showLoginForm');
     Route::get('register', [SiteAuthController::class, 'showRegisterForm'])->name('showRegisterForm');
     Route::post('register', [SiteAuthController::class, 'register'])->name('register');
     Route::post('login', [SiteAuthController::class, 'login'])->name('login');
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('stories', [StoryController::class, 'index'])->name('stories');
+Route::middleware('auth')->group(function () 
+{
+    Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
+});
+
+

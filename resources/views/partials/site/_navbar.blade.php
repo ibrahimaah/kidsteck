@@ -7,7 +7,7 @@
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary kids-active-btn" href="{{ route('register') }}">إنشاء حساب</a>
+                            <a class="nav-link btn btn-primary kids-active-btn" href="{{ route('login') }}">تسجيل الدخول</a>
                         </li>
                         @else 
                         <li class="nav-item">

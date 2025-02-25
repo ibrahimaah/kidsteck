@@ -16,15 +16,21 @@ class AdminAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+        if (!Auth::check()) 
+        {
             // If the route starts with "admin", redirect to admin login
-            if ($request->is('admin*')) {
+            if ($request->is('admin*')) 
+            {
                 return redirect()->route('admin.loginForm');
             }
             // Otherwise, redirect to home page
             return redirect('/');
         }
-
+        
+        if (Auth::check() && Auth::user()->role_id !== 1) 
+        {
+            abort(403, 'Unauthorized action.');
+        }
         return $next($request);
     }
 }
