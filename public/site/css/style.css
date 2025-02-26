@@ -1613,7 +1613,8 @@ header.homepage-two.header:before{
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(180deg, rgba(199, 29, 187, 0.71) 0.61%, rgba(255, 80, 6, 0.42) 100%);
+    /* background: linear-gradient(180deg, rgba(199, 29, 187, 0.71) 0.61%, rgba(255, 80, 6, 0.42) 100%); */
+    background: linear-gradient(180deg, rgba(0, 123, 255, 0.7) 0%, rgba(255, 159, 64, 0.5) 100%);
     z-index: -1;
 }
 .header-slider{

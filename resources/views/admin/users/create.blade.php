@@ -64,7 +64,7 @@
                     <option value="">اختر صلاحية المستخدم</option>
                     <option value="1">أدمن</option> 
                     <option value="2">متطوع</option> 
-                    <option value="3">أب</option> 
+                    <option value="3">والد/ة</option> 
                 </select>
             </div>
         </div>

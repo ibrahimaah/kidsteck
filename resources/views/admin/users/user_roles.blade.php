@@ -14,7 +14,7 @@
             <a href="{{ route('create_user_by_role',['role'=>'child']) }}" class="btn btn-lg btn-primary w-50">طفل</a> 
         </div>
         <div class="col-12"> 
-            <a href="{{ route('create_user_by_role',['role'=>'parent']) }}" class="btn btn-lg btn-primary w-50">أب</a> 
+            <a href="{{ route('create_user_by_role',['role'=>'parent']) }}" class="btn btn-lg btn-primary w-50">والد/ة</a> 
         </div>
         <div class="col-12"> 
             <a href="{{ route('create_user_by_role',['role'=>'volunteer']) }}" class="btn btn-lg btn-primary w-50">متطوع</a>

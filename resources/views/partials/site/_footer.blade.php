@@ -2,8 +2,8 @@
 	<div class="container">
 		<div class="row justify-content-between">
 			<div class="col-md-6 col-sm-6 col-lg-4 text-center">
-                <img src="{{ asset('imgs/logo.png') }}" class="img-fluid w-50" alt="شعار كيدستيك">
-                <p>كيدستيك - منصة ممتعة وتفاعلية حيث يتعلم الأطفال البرمجة من خلال قصص مشوقة واختبارات. نهدف إلى تمكين العقول الشابة بالإبداع ومهارات حل المشكلات.</p>
+                <img src="{{ asset('imgs/logo.png') }}" class="img-fluid w-50" alt="شعار Kidsteck">
+                <p>kidsteck - منصة ممتعة وتفاعلية حيث يتعلم الأطفال البرمجة من خلال قصص مشوقة واختبارات. نهدف إلى تمكين الأطفال بالإبداع ومهارات حل المشكلات.</p>
             </div>
             
 			<!-- col-md-4 -->
@@ -18,7 +18,7 @@
 			</div>
 			<!-- col-md-4 -->
 			<div class="col-md-3 col-sm-6 col-lg-2">
-				<h4>قصص شائعة</h4>
+				<h4>أحدث القصص</h4>
 				<ul class="footer-link">
 					<li class="nav-item"><a href="" class="nav-link">قصة 1</a></li>
 					<li class="nav-item"><a href="" class="nav-link">قصة 2</a></li> 

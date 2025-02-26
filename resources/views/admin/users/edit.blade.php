@@ -64,7 +64,7 @@
                 <select class="form-select" id="role_id" name="role_id" required>
                     <option value="">اختر صلاحية المستخدم</option>
                     <option value="2" {{ $user->role_id == 2 ? 'selected' : '' }}>متطوع</option> 
-                    <option value="3" {{ $user->role_id == 3 ? 'selected' : '' }}>أب</option> 
+                    <option value="3" {{ $user->role_id == 3 ? 'selected' : '' }}>والد/ة</option> 
                 </select>
             </div>
         </div>
