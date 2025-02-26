@@ -118,8 +118,9 @@ body::before {
                     <div class="mb-3">
                         <label class="form-label">👤 اختر الدور</label>
                         <select class="form-select" name="role" id="role" required>
-                            <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>👪 والد/ة</option>
-                            <option value="volunteer" {{ old('role') == 'volunteer' ? 'selected' : '' }}>🤝 متطوع</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" {{ old('role') ==  $role->id ? 'selected' : '' }}>{{ __($role->name) }}</option>
+                            @endforeach
                         </select>
                         @error('role')
                         <small class="text-danger">{{ $message }}</small>
@@ -154,7 +155,7 @@ body::before {
             
             <button type="submit" class="btn btn-kids w-100">🚀 إنشاء الحساب</button>
             <a href="{{ route('login') }}" class="d-block mt-3">🔑 لديك حساب؟ تسجيل الدخول</a>
-            <a href="http://localhost:8000" class="text-center d-block mt-3">🏠 العودة إلى الصفحة الرئيسية</a>
+            <a href="{{ route('home') }}" class="text-center d-block mt-3">🏠 العودة إلى الصفحة الرئيسية</a>
         </form>
     </div>
 </body>

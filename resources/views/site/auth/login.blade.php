@@ -95,8 +95,11 @@ body::before {
         <img src="{{ asset('imgs/logo.png') }}" alt="Cute Icon" class="cute-icon">
         <h2>🎈 تسجيل الدخول 🎈</h2>
         
-        <form action="http://localhost:8000/login" method="POST">
-            <input type="hidden" name="_token" value="SQTF4L14vjVSYHCBYJQ66c7U30objKwcSNmFPxk8" autocomplete="off">            
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="mb-3">
                 <label class="form-label">📧 البريد الإلكتروني</label>
                 <input type="email" class="form-control" name="email" value="" required>
@@ -106,8 +109,8 @@ body::before {
                 <input type="password" class="form-control" name="password" required dir="ltr">
             </div>
             <button type="submit" class="btn btn-kids w-100">🚀 تسجيل الدخول</button>
-            <p class="text-center mt-3">ليس لديك حساب؟ <a href="http://localhost:8000/register">🌟 إنشاء حساب جديد</a></p>
-            <a href="http://localhost:8000" class="text-center d-block mt-3">🏠 العودة إلى الصفحة الرئيسية</a>
+            <p class="text-center mt-3">ليس لديك حساب؟ <a href="{{ route('register') }}">🌟 إنشاء حساب جديد</a></p>
+            <a href="{{ route('home') }}" class="text-center d-block mt-3">🏠 العودة إلى الصفحة الرئيسية</a>
         </form>
         
     </div>

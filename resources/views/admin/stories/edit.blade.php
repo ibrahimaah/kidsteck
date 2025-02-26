@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Edit Story Section -->
-<div class="edit-story-section">
+<div class="welcome-section">
     <h1>تعديل القصة</h1>
     <p>قم بتعديل البيانات أدناه وتحديث القصة.</p>
 </div>
