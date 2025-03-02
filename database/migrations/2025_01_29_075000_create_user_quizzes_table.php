@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_quizzes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
-            $table->integer('score')->default(0); // Score for the quiz
-            $table->boolean('completed')->default(false); // Marks if the quiz is completed
-        });
+        // Schema::create('user_quizzes', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+        //     $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
+        //     $table->integer('score')->default(0); // Score for the quiz
+        //     $table->boolean('completed')->default(false); // Marks if the quiz is completed
+        // });
     }
 
     /**

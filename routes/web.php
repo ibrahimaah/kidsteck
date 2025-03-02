@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\StoryController as AdminStoryController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -66,6 +67,14 @@ Route::middleware('admin.auth')->group(function () {
 
     Route::get('admin/create-user', [UserController::class, 'create'])->name('create_user');
     Route::get('admin/create-user-by-role/{role}', [UserController::class, 'create_user_by_role'])->name('create_user_by_role');
+
+    //Quiz Questions
+    Route::get('admin/story-parts/{story_part_id}/question', [QuestionController::class, 'index'])->name('admin.story_parts.questions'); // List questions
+    Route::get('admin/story-parts/{story_part_id}/question/create', [QuestionController::class, 'create'])->name('admin.story_parts.question.create'); // Create form
+    Route::post('admin/story-parts/question/store', [QuestionController::class, 'store'])->name('admin.story_parts.question.store'); // Store new question
+    Route::get('admin/story-parts/question/{id}/edit', [QuestionController::class, 'edit'])->name('admin.story_parts.question.edit'); // Edit form
+    Route::put('admin/story-parts/question/{id}/update', [QuestionController::class, 'update'])->name('admin.story_parts.question.update'); // Update question
+    Route::delete('admin/story-parts/question/{id}/delete', [QuestionController::class, 'destroy'])->name('admin.story_parts.question.delete'); // Delete question
 });
 
 

@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quizzes', function (Blueprint $table) {
-            $table->id(); 
-            $table->foreignId('story_part_id')->constrained()->onDelete('cascade');
-            $table->integer('points')->default(0); // Points for completing the quiz
-        });
+        // Schema::create('quizzes', function (Blueprint $table) {
+        //     $table->id(); 
+        //     $table->foreignId('story_part_id')->constrained()->onDelete('cascade');
+        //     $table->integer('points')->default(0); // Points for completing the quiz
+        // });
     }
 
     /**

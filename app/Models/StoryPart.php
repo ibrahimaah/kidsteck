@@ -27,9 +27,10 @@ class StoryPart extends Model implements HasMedia
         return $this->getFirstMediaUrl('videos'); // 'videos' is the collection name
     }
 
-    public function quiz()
-    {
-        return $this->hasOne(Quiz::class);
-    }
     
+    
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

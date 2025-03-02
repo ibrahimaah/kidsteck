@@ -15,7 +15,7 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-striped">
+    <table class="table table-striped text-center">
         <thead>
             <tr>
                 <th>#</th>
@@ -29,22 +29,22 @@
         <tbody>
             @foreach($stories as $story)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>
+                    <td class="align-middle">{{ $loop->iteration }}</td>
+                    <td class="align-middle">
                         @if($story->hasMedia('story_cover_images'))
                             <img src="{{ $story->getFirstMediaUrl('story_cover_images', 'thumb') }}" width="70" height="70" class="rounded">
                         @else
                             <span class="text-muted">لا توجد صورة</span>
                         @endif
                     </td>
-                    <td>{{ $story->title }}</td>
-                    <td>{{ Str::limit($story->description, 50) }}</td>
-                    <td>
+                    <td class="align-middle">{{ $story->title }}</td>
+                    <td class="align-middle">{{ Str::limit($story->description, 50) }}</td>
+                    <td class="align-middle">
                         <span class="badge bg-{{ $story->is_active ? 'success' : 'secondary' }}">
                             {{ $story->is_active  ? 'منشورة' : 'مسودة' }}
                         </span>
                     </td>
-                    <td>
+                    <td class="align-middle">
                         <a href="{{ route('admin.stories.edit', ['id' => $story->id]) }}" class="btn btn-warning btn-sm">تعديل</a>
                         
                         <form action="{{ route('admin.stories.delete', ['id' => $story->id]) }}" 

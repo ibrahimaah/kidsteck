@@ -8,15 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    
+    protected $fillable = ['story_part_id', 'question'];
 
-    public function quiz()
+    public function storyPart()
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(StoryPart::class);
     }
 
-    public function answers()
+    public function options()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(QuestionOption::class);
+    }
+
+    public function correctOption()
+    {
+        return $this->hasOne(QuestionOption::class)->where('is_correct', true);
     }
 }
