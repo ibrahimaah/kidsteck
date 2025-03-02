@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StoryController as AdminStoryController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StoryPartController;
+use App\Http\Controllers\StoryPartController as SiteStoryPartController;
 use App\Http\Controllers\AuthController as SiteAuthController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
@@ -68,7 +69,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('admin/create-user', [UserController::class, 'create'])->name('create_user');
     Route::get('admin/create-user-by-role/{role}', [UserController::class, 'create_user_by_role'])->name('create_user_by_role');
 
-    //Quiz Questions
+    //Story Part Questions
     Route::get('admin/story-parts/{story_part_id}/question', [QuestionController::class, 'index'])->name('admin.story_parts.questions'); // List questions
     Route::get('admin/story-parts/{story_part_id}/question/create', [QuestionController::class, 'create'])->name('admin.story_parts.question.create'); // Create form
     Route::post('admin/story-parts/question/store', [QuestionController::class, 'store'])->name('admin.story_parts.question.store'); // Store new question
@@ -92,6 +93,9 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('stories', [StoryController::class, 'index'])->name('stories');
+Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
+Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
+Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
 Route::middleware('auth')->group(function () 
 {
     Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');

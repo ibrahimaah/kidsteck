@@ -12,4 +12,9 @@ class StoryController extends Controller
         $stories = Story::where('is_active',true)->get();
         return view('site.stories.index',compact('stories'));
     }
+    public function show($id)
+    {
+        $story = Story::findOrFail($id);
+        return view('site.stories.show',compact('story'));
+    }
 }
