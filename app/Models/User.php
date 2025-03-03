@@ -56,4 +56,34 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function is_volunteer()
+    {
+        return $this->role_id == 2;
+    }
+
+    public function is_parent()
+    {
+        return $this->role_id == 3;
+    }
+
+    public function is_child()
+    {
+        return $this->role_id == 4;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
+
+    /**
+     * Get the child users.
+     */
+    public function children()
+    {
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    
 }

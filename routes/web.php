@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\StoryPartController;
 use App\Http\Controllers\StoryPartController as SiteStoryPartController;
 use App\Http\Controllers\AuthController as SiteAuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -98,6 +99,12 @@ Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'sh
 Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
 Route::middleware('auth')->group(function () 
 {
+    Route::get('parent-dashboard',[ParentDashboardController::class,'index'])->name('parent.dashboard');
+    Route::get('parent-dashboard/{parent_id}/create-child-account',[ParentDashboardController::class,'create_child'])->name('parent.create_user_child');
+    Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class,'edit_child'])->name('parent.edit_user_child');
+    Route::post('parent-dashboard/store-child-account',[ParentDashboardController::class,'store_child'])->name('parent.store_user_child');
+    Route::put('parent-dashboard/update-child-account/{user_id}',[ParentDashboardController::class,'update_child'])->name('parent.update_user_child');
+    Route::delete('delete-child-account/{user_id}',[ParentDashboardController::class,'remove_child'])->name('parent.remove_user_child');
     Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
 });
 

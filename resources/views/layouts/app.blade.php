@@ -35,17 +35,18 @@
     end Preloader
 ======================== -->
 <body class="homepage-two">
+
     @include('partials.site._header_top')
     <!-- Header-top -->
-    @include('partials.site._navbar')
+    @if (Route::currentRouteName() == 'home')
+        @include('partials.site._navbar_with_slider')
+    @else   
+        @include('partials.site._navbar')
+    @endif
+    
  
     @yield('content')
  
- 
-
- 
- 
-
 
     @include('partials.site._footer')
    <!-- Theme Need JS -->
