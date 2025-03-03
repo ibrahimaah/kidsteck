@@ -104,7 +104,8 @@ Route::middleware('auth')->group(function ()
     Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class,'edit_child'])->name('parent.edit_user_child');
     Route::post('parent-dashboard/store-child-account',[ParentDashboardController::class,'store_child'])->name('parent.store_user_child');
     Route::put('parent-dashboard/update-child-account/{user_id}',[ParentDashboardController::class,'update_child'])->name('parent.update_user_child');
-    Route::delete('delete-child-account/{user_id}',[ParentDashboardController::class,'remove_child'])->name('parent.remove_user_child');
+    Route::delete('parent-dashboard/delete-child-account/{user_id}',[ParentDashboardController::class,'remove_child'])->name('parent.remove_user_child');
+    
     Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
 });
 
