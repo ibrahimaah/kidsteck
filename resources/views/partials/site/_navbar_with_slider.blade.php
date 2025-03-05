@@ -31,11 +31,12 @@
                                     href="{{ route('parent.dashboard') }}">لوحة التحكم</a>
                             </li>
                             @endif 
-                        @endauth 
+                        
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'stories' ? 'active' : '' }}"
                                 href="{{ route('stories') }}">مكتبة القصص</a>
                         </li>
+                        @endauth 
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'about' ? 'active' : '' }}" href="#">من
                                 نحن</a>

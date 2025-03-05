@@ -59,5 +59,7 @@
             @endforeach
         </tbody>
     </table>
-
+    <div class="d-flex justify-content-end">
+        <a href="{{ route('admin.story_parts',$storyPart->id) }}" class="btn btn-danger">رجوع</a>
+    </div>
 @endsection

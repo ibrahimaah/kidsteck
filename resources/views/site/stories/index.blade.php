@@ -74,7 +74,8 @@
                             </div> 
                         </div>
                         <div class="slider-btn">
-                            <a class="btn btn-primary kids-active-btn" href="{{ route('stories.show',$story->id) }}">ابدأ</a>
+                            {{-- <a class="btn btn-primary kids-active-btn" href="{{ route('stories.show',$story->id) }}">ابدأ</a> --}}
+                            <a class="btn btn-primary kids-active-btn" href="#">ابدأ</a>
                         </div>
                     </div>
                 </div>

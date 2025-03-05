@@ -42,6 +42,9 @@ class AuthController extends Controller
         // Auto-login user and redirect (or redirect to login)
         Auth::login($user);
 
+        if ($user->is_parent()) {
+            return redirect()->route('parent.dashboard');
+        }
         return redirect()->route('home');
 
     }
@@ -57,6 +60,10 @@ class AuthController extends Controller
   
           if (Auth::attempt($request->only('email', 'password'))) 
           {
+                if (auth()->user()->is_parent()) 
+                {
+                    return redirect()->route('parent.dashboard');
+                }
               return redirect()->route('home');
           }
   

@@ -57,4 +57,8 @@
         </tbody>
     </table>
 
+    <div class="d-flex justify-content-end">
+        <a href="{{ route('admin.stories') }}" class="btn btn-danger">رجوع</a>
+    </div>
+
 @endsection
