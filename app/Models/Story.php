@@ -27,4 +27,9 @@ class Story extends Model implements HasMedia
     {
         return $this->hasMany(StoryPart::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

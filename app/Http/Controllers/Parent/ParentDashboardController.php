@@ -20,6 +20,10 @@ class ParentDashboardController extends Controller
         });
     }
 
+    public function manage_childs_accounts()
+    {
+        return view('site.parent.manage-childs-accounts.index');
+    }
     public function index()
     {
         return view('site.parent.dashboard');
@@ -27,7 +31,7 @@ class ParentDashboardController extends Controller
 
     public function create_child($parent_id)
     {
-        return view('site.parent.create_child', ['parent_id' => $parent_id]);
+        return view('site.parent.manage-childs-accounts.create_child', ['parent_id' => $parent_id]);
     }
 
     
@@ -71,7 +75,7 @@ class ParentDashboardController extends Controller
 
     public function edit_child($user_id) {
         $user = User::findOrFail($user_id);
-        return view('site.parent.edit_child',['user' => $user]);
+        return view('site.parent.manage-childs-accounts.edit_child',['user' => $user]);
     }
 
 
@@ -111,4 +115,6 @@ class ParentDashboardController extends Controller
         $user->delete();
         return redirect()->back()->with('success', 'تم حذف حساب الطفل بنجاح');
     }
+
+    
 }

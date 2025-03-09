@@ -1,0 +1,81 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('parent.dashboard') }}">لوحة التحكم</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('parent.proposed-stories') }}">إدارة القصص المقترحة</a></li>
+            <li class="breadcrumb-item active">تعديل مقترح قصة</li>
+        </ol>
+    </nav>
+
+    <div class="card p-4">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    
+        <form action="{{ route('parent.proposed_stories.update', $proposed_story->id) }}" method="POST">
+            @csrf 
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">عنوان القصة</label>
+                    <input type="text" class="form-control" name="title" value="{{ $proposed_story->title }}" required>
+                </div>
+              
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">نوع القصة</label>
+                    <select class="form-select" name="category_id" required>
+                        <option value="">اختر النوع</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ $proposed_story->category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach 
+                    </select>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">الفئة العمرية المستهدفة</label>
+                    <select class="form-select" name="target_age" required>
+                        <option value="">اختر الفئة العمرية المستهدفة</option>
+                        <option value="[4-6]" {{ $proposed_story->target_age == '[4-6]' ? 'selected' : '' }}>[4-6]</option>
+                        <option value="[6-8]" {{ $proposed_story->target_age == '[6-8]' ? 'selected' : '' }}>[6-8]</option>
+                        <option value="[8-10]" {{ $proposed_story->target_age == '[8-10]' ? 'selected' : '' }}>[8-10]</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">وصف القصة</label>
+                    <textarea class="form-control" name="description" rows="4" required>{{ $proposed_story->description }}</textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit" class="btn btn-primary w-25">تحديث</button>
+                <a href="{{ route('parent.proposed-stories') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+@endsection

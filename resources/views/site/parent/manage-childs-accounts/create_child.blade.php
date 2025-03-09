@@ -3,10 +3,18 @@
 @section('content')
 
 <div class="container mt-4">
-    <div class="section-title mb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('parent.dashboard') }}">لوحة التحكم</a></li> 
+          <li class="breadcrumb-item"><a href="{{ route('parent.manage-accounts') }}">إدارة حسابات الأطفال</a></li> 
+          <li class="breadcrumb-item active">إضافة حساب طفل</li>
+        </ol>
+      </nav>
+
+    {{-- <div class="section-title mb-3">
         <h2 class="text-primary">إضافة حساب طفل</h2> 
     </div>
- 
+  --}}
     
 <!-- User Registration Form -->
 <div class="card p-4">

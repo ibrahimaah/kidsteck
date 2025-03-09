@@ -11,6 +11,7 @@ use App\Http\Controllers\StoryPartController as SiteStoryPartController;
 use App\Http\Controllers\AuthController as SiteAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Parent\ParentDashboardController;
+use App\Http\Controllers\Parent\ProposedStoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -100,12 +101,20 @@ Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class
 Route::middleware('auth')->group(function () 
 {
     Route::get('parent-dashboard',[ParentDashboardController::class,'index'])->name('parent.dashboard');
+    Route::get('parent-dashboard/manage-childs-accounts',[ParentDashboardController::class,'manage_childs_accounts'])->name('parent.manage-accounts');
     Route::get('parent-dashboard/{parent_id}/create-child-account',[ParentDashboardController::class,'create_child'])->name('parent.create_user_child');
     Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class,'edit_child'])->name('parent.edit_user_child');
     Route::post('parent-dashboard/store-child-account',[ParentDashboardController::class,'store_child'])->name('parent.store_user_child');
     Route::put('parent-dashboard/update-child-account/{user_id}',[ParentDashboardController::class,'update_child'])->name('parent.update_user_child');
     Route::delete('parent-dashboard/delete-child-account/{user_id}',[ParentDashboardController::class,'remove_child'])->name('parent.remove_user_child');
     
+    Route::get('parent-dashboard/proposed-stories',[ProposedStoryController::class,'index'])->name('parent.proposed-stories');
+    Route::get('parent-dashboard/create-proposed-story', [ProposedStoryController::class, 'create'])->name('parent.proposed_stories.create');
+    Route::get('parent-dashboard/edit-proposed-story/{id}', [ProposedStoryController::class, 'edit'])->name('parent.proposed_stories.edit');
+    Route::post('store-proposed-story', [ProposedStoryController::class, 'store'])->name('parent.proposed_stories.store');
+    Route::post('update-proposed-story/{id}', [ProposedStoryController::class, 'update'])->name('parent.proposed_stories.update');
+    Route::post('delete-proposed-story/{id}', [ProposedStoryController::class, 'delete'])->name('parent.proposed_stories.delete');
+
     Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
 });
 
