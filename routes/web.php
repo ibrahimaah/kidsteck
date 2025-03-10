@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController as SiteAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Http\Controllers\Parent\ProposedStoryController;
+use App\Http\Controllers\Admin\ProposedStoryController as AdminProposedStoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +79,12 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('admin/story-parts/question/{id}/edit', [QuestionController::class, 'edit'])->name('admin.story_parts.question.edit'); // Edit form
     Route::put('admin/story-parts/question/{id}/update', [QuestionController::class, 'update'])->name('admin.story_parts.question.update'); // Update question
     Route::delete('admin/story-parts/question/{id}/delete', [QuestionController::class, 'destroy'])->name('admin.story_parts.question.delete'); // Delete question
+
+
+    Route::get('proposed-stories',[AdminProposedStoryController::class,'index'])->name('admin.proposed-stories');
+    Route::get('proposed-stories/{id}/show',[AdminProposedStoryController::class,'show'])->name('admin.proposed-stories.show');
+    Route::post('proposed-stories/{id}/accept',[AdminProposedStoryController::class,'accept'])->name('admin.proposed-stories.accept');
+    Route::post('proposed-stories/{id}/reject',[AdminProposedStoryController::class,'reject'])->name('admin.proposed-stories.reject');
 });
 
 
