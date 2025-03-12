@@ -22,6 +22,7 @@
                 <th>صورة الغلاف</th>
                 <th>العنوان</th>
                 <th>الوصف</th>
+                <th>أضيفت من قبل</th>
                 <th>الحالة</th>
                 <th>الإجراءات</th>
             </tr>
@@ -39,6 +40,7 @@
                     </td>
                     <td class="align-middle">{{ $story->title }}</td>
                     <td class="align-middle">{{ Str::limit($story->description, 50) }}</td>
+                    <td class="align-middle">{{ $story->added_by == "admin" ? "أدمن" : "متطوع"}}</td>
                     <td class="align-middle">
                         <span class="badge bg-{{ $story->is_active ? 'success' : 'secondary' }}">
                             {{ $story->is_active  ? 'منشورة' : 'مسودة' }}

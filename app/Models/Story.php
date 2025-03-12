@@ -17,10 +17,11 @@ class Story extends Model implements HasMedia
         'title',
         'description', 
         'target_age',
-        'is_proposed_by_parent',
-        'parent_id',
+        'added_by',
+        'volunteer_id',
         'category_id',
         'is_active',
+        'status'
     ];
 
     public function parts()

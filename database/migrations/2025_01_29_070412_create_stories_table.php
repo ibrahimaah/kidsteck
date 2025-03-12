@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('target_age');
-            $table->boolean('is_proposed_by_parent')->default(false);
-            $table->foreignId('parent_id')->nullable()->constrained('users');
+            $table->enum('added_by',['admin','volunteer'])->default('admin');
+            $table->foreignId('volunteer_id')->nullable()->constrained('users');
             $table->foreignId('category_id')->constrained(); 
+            $table->enum('status',['pending','accepted','rejected'])->default('pending');
             $table->boolean('is_active')->default(false);
         });
     }

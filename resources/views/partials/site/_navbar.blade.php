@@ -32,6 +32,13 @@
                             </li>
                             
                             @endif 
+
+                            @if(auth()->user()->is_volunteer())
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::currentRouteName() == 'volunteer.dashboard' ? 'active' : '' }}"
+                                        href="{{ route('volunteer.dashboard') }}">لوحة التحكم</a>
+                                </li>
+                            @endif 
                         
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'stories' ? 'active' : '' }}"

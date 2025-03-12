@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label class="form-label">صورة الغلاف</label>
-                <input type="file" class="form-control" id="cover_image" name="story_cover_image">
+                <input type="file" class="form-control" id="cover_image" name="story_cover_image" required>
             </div>
             <div class="col-md-4 mb-3">
                 <label class="form-label">الفئةالعمرية المستهدفة</label>

@@ -13,6 +13,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Http\Controllers\Parent\ProposedStoryController;
 use App\Http\Controllers\Admin\ProposedStoryController as AdminProposedStoryController;
+use App\Http\Controllers\Volunteer\DashboardController as VolunteerDashboardController;
+use App\Http\Controllers\Volunteer\ProposedStoryController as VolunteerProposedStoryController;
+use App\Http\Controllers\Volunteer\VolunteerStoryController;
+use App\Http\Controllers\Volunteer\VolunteerStoryPartController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -81,10 +85,11 @@ Route::middleware('admin.auth')->group(function () {
     Route::delete('admin/story-parts/question/{id}/delete', [QuestionController::class, 'destroy'])->name('admin.story_parts.question.delete'); // Delete question
 
 
-    Route::get('proposed-stories',[AdminProposedStoryController::class,'index'])->name('admin.proposed-stories');
-    Route::get('proposed-stories/{id}/show',[AdminProposedStoryController::class,'show'])->name('admin.proposed-stories.show');
-    Route::post('proposed-stories/{id}/accept',[AdminProposedStoryController::class,'accept'])->name('admin.proposed-stories.accept');
-    Route::post('proposed-stories/{id}/reject',[AdminProposedStoryController::class,'reject'])->name('admin.proposed-stories.reject');
+    //Propose Stories
+    Route::get('proposed-stories', [AdminProposedStoryController::class, 'index'])->name('admin.proposed-stories');
+    Route::get('proposed-stories/{id}/show', [AdminProposedStoryController::class, 'show'])->name('admin.proposed-stories.show');
+    Route::post('proposed-stories/{id}/accept', [AdminProposedStoryController::class, 'accept'])->name('admin.proposed-stories.accept');
+    Route::post('proposed-stories/{id}/reject', [AdminProposedStoryController::class, 'reject'])->name('admin.proposed-stories.reject');
 });
 
 
@@ -105,24 +110,45 @@ Route::get('stories', [StoryController::class, 'index'])->name('stories');
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
 Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
 Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
-Route::middleware('auth')->group(function () 
-{
-    Route::get('parent-dashboard',[ParentDashboardController::class,'index'])->name('parent.dashboard');
-    Route::get('parent-dashboard/manage-childs-accounts',[ParentDashboardController::class,'manage_childs_accounts'])->name('parent.manage-accounts');
-    Route::get('parent-dashboard/{parent_id}/create-child-account',[ParentDashboardController::class,'create_child'])->name('parent.create_user_child');
-    Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class,'edit_child'])->name('parent.edit_user_child');
-    Route::post('parent-dashboard/store-child-account',[ParentDashboardController::class,'store_child'])->name('parent.store_user_child');
-    Route::put('parent-dashboard/update-child-account/{user_id}',[ParentDashboardController::class,'update_child'])->name('parent.update_user_child');
-    Route::delete('parent-dashboard/delete-child-account/{user_id}',[ParentDashboardController::class,'remove_child'])->name('parent.remove_user_child');
-    
-    Route::get('parent-dashboard/proposed-stories',[ProposedStoryController::class,'index'])->name('parent.proposed-stories');
+Route::middleware('auth')->group(function () {
+    Route::get('parent-dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
+    Route::get('parent-dashboard/manage-childs-accounts', [ParentDashboardController::class, 'manage_childs_accounts'])->name('parent.manage-accounts');
+    Route::get('parent-dashboard/{parent_id}/create-child-account', [ParentDashboardController::class, 'create_child'])->name('parent.create_user_child');
+    Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class, 'edit_child'])->name('parent.edit_user_child');
+    Route::post('parent-dashboard/store-child-account', [ParentDashboardController::class, 'store_child'])->name('parent.store_user_child');
+    Route::put('parent-dashboard/update-child-account/{user_id}', [ParentDashboardController::class, 'update_child'])->name('parent.update_user_child');
+    Route::delete('parent-dashboard/delete-child-account/{user_id}', [ParentDashboardController::class, 'remove_child'])->name('parent.remove_user_child');
+
+    Route::get('parent-dashboard/proposed-stories', [ProposedStoryController::class, 'index'])->name('parent.proposed-stories');
     Route::get('parent-dashboard/create-proposed-story', [ProposedStoryController::class, 'create'])->name('parent.proposed_stories.create');
     Route::get('parent-dashboard/edit-proposed-story/{id}', [ProposedStoryController::class, 'edit'])->name('parent.proposed_stories.edit');
     Route::post('store-proposed-story', [ProposedStoryController::class, 'store'])->name('parent.proposed_stories.store');
     Route::post('update-proposed-story/{id}', [ProposedStoryController::class, 'update'])->name('parent.proposed_stories.update');
     Route::post('delete-proposed-story/{id}', [ProposedStoryController::class, 'delete'])->name('parent.proposed_stories.delete');
 
+
+    Route::get('volunteer-dashboard', [VolunteerDashboardController::class, 'index'])->name('volunteer.dashboard');
+    Route::get('volunteer-dashboard/proposed-stories', [VolunteerProposedStoryController::class, 'index'])->name('volunteer.proposed-stories');
+    Route::get('volunteer-dashboard/{id}/proposed-stories', [VolunteerProposedStoryController::class, 'show'])->name('volunteer.proposed-stories.show');
+
+
+    Route::prefix('volunteer-dashboard/stories')->name('volunteer.stories.')->group(function () {
+        Route::get('/', [VolunteerStoryController::class, 'index'])->name('index');
+        Route::get('/create', [VolunteerStoryController::class, 'create'])->name('create');
+        Route::get('/{id}/edit', [VolunteerStoryController::class, 'edit'])->name('edit');
+        Route::get('/{id}/show', [VolunteerStoryController::class, 'show'])->name('show');
+        Route::post('/store', [VolunteerStoryController::class, 'store'])->name('store');
+        Route::post('/{id}/update', [VolunteerStoryController::class, 'update'])->name('update');
+        Route::post('/{id}/delete', [VolunteerStoryController::class, 'delete'])->name('delete');
+    });
+    
+
+    Route::get('volunteer/stories/{story_id}/story-parts', [VolunteerStoryPartController::class, 'index'])->name('volunteer.story_parts.index');
+    Route::get('volunteer/stories/{story_id}/create-story-part', [VolunteerStoryPartController::class, 'create'])->name('volunteer.story_parts.create');
+    Route::get('volunteer/edit-story-part/{id}', [VolunteerStoryPartController::class, 'edit'])->name('volunteer.story_parts.edit');
+    Route::post('volunteer/store-story-part', [VolunteerStoryPartController::class, 'store'])->name('volunteer.story_parts.store');
+    Route::post('volunteer/update-story-part/{id}', [VolunteerStoryPartController::class, 'update'])->name('volunteer.story_parts.update');
+    Route::post('volunteer/delete-story-part/{id}', [VolunteerStoryPartController::class, 'delete'])->name('volunteer.story_parts.delete');
+
     Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
 });
-
-
