@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول للأطفال</title>
+    <title>تسجيل الدخول </title>
     <link href="http://localhost:8000/common/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link href="http://localhost:8000/site/css/style.css" rel="stylesheet">
     <style>

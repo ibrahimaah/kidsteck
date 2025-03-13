@@ -110,7 +110,8 @@ Route::get('stories', [StoryController::class, 'index'])->name('stories');
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
 Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
 Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
-Route::middleware('auth')->group(function () {
+
+Route::middleware(['auth', 'parent'])->group(function () {
     Route::get('parent-dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
     Route::get('parent-dashboard/manage-childs-accounts', [ParentDashboardController::class, 'manage_childs_accounts'])->name('parent.manage-accounts');
     Route::get('parent-dashboard/{parent_id}/create-child-account', [ParentDashboardController::class, 'create_child'])->name('parent.create_user_child');
@@ -126,11 +127,16 @@ Route::middleware('auth')->group(function () {
     Route::post('update-proposed-story/{id}', [ProposedStoryController::class, 'update'])->name('parent.proposed_stories.update');
     Route::post('delete-proposed-story/{id}', [ProposedStoryController::class, 'delete'])->name('parent.proposed_stories.delete');
 
+});
 
-    Route::get('volunteer-dashboard', [VolunteerDashboardController::class, 'index'])->name('volunteer.dashboard');
-    Route::get('volunteer-dashboard/proposed-stories', [VolunteerProposedStoryController::class, 'index'])->name('volunteer.proposed-stories');
-    Route::get('volunteer-dashboard/{id}/proposed-stories', [VolunteerProposedStoryController::class, 'show'])->name('volunteer.proposed-stories.show');
+Route::middleware(['auth', 'volunteer'])->group(function () {
 
+    Route::prefix('volunteer-dashboard')->name('volunteer.')->group(function () {
+        Route::get('/', [VolunteerDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/proposed-stories', [VolunteerProposedStoryController::class, 'index'])->name('proposed-stories');
+        Route::get('/{id}/proposed-stories', [VolunteerProposedStoryController::class, 'show'])->name('proposed-stories.show');
+    });
+        
 
     Route::prefix('volunteer-dashboard/stories')->name('volunteer.stories.')->group(function () {
         Route::get('/', [VolunteerStoryController::class, 'index'])->name('index');
@@ -143,12 +149,20 @@ Route::middleware('auth')->group(function () {
     });
     
 
-    Route::get('volunteer/stories/{story_id}/story-parts', [VolunteerStoryPartController::class, 'index'])->name('volunteer.story_parts.index');
-    Route::get('volunteer/stories/{story_id}/create-story-part', [VolunteerStoryPartController::class, 'create'])->name('volunteer.story_parts.create');
-    Route::get('volunteer/edit-story-part/{id}', [VolunteerStoryPartController::class, 'edit'])->name('volunteer.story_parts.edit');
-    Route::post('volunteer/store-story-part', [VolunteerStoryPartController::class, 'store'])->name('volunteer.story_parts.store');
-    Route::post('volunteer/update-story-part/{id}', [VolunteerStoryPartController::class, 'update'])->name('volunteer.story_parts.update');
-    Route::post('volunteer/delete-story-part/{id}', [VolunteerStoryPartController::class, 'delete'])->name('volunteer.story_parts.delete');
-
-    Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout');
+    Route::prefix('volunteer/stories/{story_id}')->group(function () {
+        Route::get('story-parts', [VolunteerStoryPartController::class, 'index'])->name('volunteer.story_parts.index');
+        Route::get('create-story-part', [VolunteerStoryPartController::class, 'create'])->name('volunteer.story_parts.create');
+    });
+    
+    Route::prefix('volunteer')->group(function () {
+        Route::get('edit-story-part/{id}', [VolunteerStoryPartController::class, 'edit'])->name('volunteer.story_parts.edit');
+        Route::post('store-story-part', [VolunteerStoryPartController::class, 'store'])->name('volunteer.story_parts.store');
+        Route::post('update-story-part/{id}', [VolunteerStoryPartController::class, 'update'])->name('volunteer.story_parts.update');
+        Route::post('delete-story-part/{id}', [VolunteerStoryPartController::class, 'delete'])->name('volunteer.story_parts.delete');
+    });
 });
+
+
+
+Route::post('logout', [SiteAuthController::class, 'logout'])->name('logout')->middleware('auth');
+

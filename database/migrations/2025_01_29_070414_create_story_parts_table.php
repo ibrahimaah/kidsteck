@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('order'); // To sort parts 
             $table->timestamps();
+
+            $table->unique(['story_id', 'order']);
         });
     }
 

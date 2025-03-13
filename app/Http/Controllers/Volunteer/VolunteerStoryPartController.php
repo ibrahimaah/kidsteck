@@ -31,7 +31,7 @@ class VolunteerStoryPartController extends Controller
         // Validate the incoming request
         $request->validate([
             'story_id' => 'required|exists:stories,id',
-            'order' => 'required|unique:story_parts,order',
+            'order' => 'required',
             'title' => 'required|string|max:255',
             'video' => 'required|mimes:mp4,mov,avi,wmv|max:51200', // Limit to 100MB
             'description' => 'nullable|string',
