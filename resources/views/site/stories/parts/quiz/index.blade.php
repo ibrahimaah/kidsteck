@@ -28,8 +28,8 @@
     }
 </style>
 
-<section class="text-center my-5">
-    <h2 class="mb-3">📝 اختبار: {{ $storyPart->title }}</h2>
+<section class="text-center my-4 pt-5">
+    <h2 class="mb-3"> اختبار: {{ $storyPart->title }} 📝</h2>
     <div class="quiz-container">
         @foreach($storyPart->questions as $question)
             <div class="mb-4">

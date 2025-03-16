@@ -39,7 +39,7 @@
                         @endif
                     </td>
                     <td class="align-middle">{{ $story->title }}</td>
-                    <td class="align-middle">{{ Str::limit($story->description, 50) }}</td>
+                    <td class="align-middle">{{ Str::limit($story->description, 30) }}</td>
                     <td class="align-middle">{{ $story->added_by == "admin" ? "أدمن" : "متطوع"}}</td>
                     <td class="align-middle">
                         <span class="badge bg-{{ $story->is_active ? 'success' : 'secondary' }}">

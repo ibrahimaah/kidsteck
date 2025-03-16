@@ -24,26 +24,28 @@
     }
 </style>
 
-<section class="text-center my-5">
-    <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
-    <p>{{ $storyPart->description }}</p>
-
-    <!-- Video Section -->
-    <div class="video-container">
-        <video id="storyVideo" controls>
-            <source src="{{ $storyPart->getFirstMediaUrl('videos') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <!-- Take Quiz Button (Initially Locked) -->
-    <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
-       id="quizBtn" 
-       class="btn btn-primary">
-       {{-- class="btn btn-primary quiz-btn locked"> --}}
-         اجتياز الاختبار 📝
-    </a>
-</section>
+<div class="container">
+    <section class="text-center my-5">
+        <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
+        <p>{{ $storyPart->description }}</p>
+    
+        <!-- Video Section -->
+        <div class="video-container">
+            <video id="storyVideo" controls>
+                <source src="{{ $storyPart->getFirstMediaUrl('videos') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    
+        <!-- Take Quiz Button (Initially Locked) -->
+        <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
+           id="quizBtn" 
+           class="btn btn-primary">
+           {{-- class="btn btn-primary quiz-btn locked"> --}}
+             اجتياز الاختبار 📝
+        </a>
+    </section>
+</div>
 
 <script>
     // document.addEventListener('DOMContentLoaded', function() {

@@ -8,6 +8,10 @@
 }
 </style>
  
+@php  
+use Illuminate\Support\Str;
+@endphp 
+
 <section class="pagetwo our-classes" dir="ltr">
     <div class="container">
         <div class="row">
@@ -27,9 +31,9 @@
                         <img src="{{ $story->getFirstMediaUrl('story_cover_images') }}" alt="Story Cover" class="img-fluid">
                     </div>
                     <div class="slider-description d-flex flex-column">   
-                        <div class="slider-text">
+                        <div class="slider-text" dir="rtl">
                             <h4>{{ $story->title }}</h4>
-                            <p>{{ $story->description }}</p>
+                            <p>{{ Str::limit($story->description, 70) }}</p>
                         </div>
                         <div class="p-0" id="story_desc">
                             

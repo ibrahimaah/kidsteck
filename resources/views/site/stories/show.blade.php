@@ -14,11 +14,14 @@
         content: "";
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.7);
     }
     .story-header h1, .story-header p {
         position: relative;
         z-index: 1;
+    }
+    .story-header p {
+        color: #c7bebe !important;
     }
     .story-parts .card {
         transition: transform 0.3s ease-in-out;
@@ -60,7 +63,7 @@
                 <div class="col-md-8">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
-                            <h4 class="mb-3">{{ $part->title }}</h4>
+                            <h4 class="mb-3 text-primary">{{ $part->title }}</h4>
                             <p>{{ $part->description }}</p>
                             <a href="{{ route('stories.part.show',$part->id) }}" class="btn btn-primary">
                                 <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>

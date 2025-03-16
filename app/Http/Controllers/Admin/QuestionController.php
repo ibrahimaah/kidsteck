@@ -67,7 +67,7 @@ class QuestionController extends Controller
     
             DB::commit();
     
-            return redirect()->route('admin.story_parts.questions', ['story_part_id' => $request->story_part_id])
+            return redirect()->back()
                              ->with('success', 'تمت إضافة السؤال بنجاح.');
     
         } catch (Exception $e) {
