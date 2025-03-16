@@ -25,7 +25,7 @@
 </style>
 
 <section class="text-center my-5">
-    <h2 class="mb-3">📖 {{ $storyPart->title }}</h2>
+    <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
     <p>{{ $storyPart->description }}</p>
 
     <!-- Video Section -->
@@ -41,7 +41,7 @@
        id="quizBtn" 
        class="btn btn-primary">
        {{-- class="btn btn-primary quiz-btn locked"> --}}
-        📝 اجتياز الاختبار
+         اجتياز الاختبار 📝
     </a>
 </section>
 

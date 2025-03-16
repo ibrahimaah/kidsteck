@@ -41,7 +41,7 @@
 
 <!-- Story Details -->
 <div class="container my-5">
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg">
                 <div class="card-body text-center">
@@ -50,20 +50,20 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Story Parts -->
     <div class="story-parts mt-5">
         <h2 class="text-center mb-4">🔹 أجزاء القصة 🔹</h2>
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach($story->parts as $part)
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
                             <h4 class="mb-3">{{ $part->title }}</h4>
                             <p>{{ $part->description }}</p>
-                            <a href="{{ route('stories.part.show',$part->id) }}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-book-open"></i> قراءة الجزء
+                            <a href="{{ route('stories.part.show',$part->id) }}" class="btn btn-primary">
+                                <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
                             </a>
                         </div>
                     </div>
