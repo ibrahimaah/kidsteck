@@ -31,47 +31,38 @@
                             <h4>{{ $story->title }}</h4>
                             <p>{{ $story->description }}</p>
                         </div>
-                        <div class="slider-title p-0" id="story_desc">
-                            <div class="card">
-                                <div class="card-body p-0">
-                                    <div class="row w-100 justify-content-between align-items-center">
+                        <div class="p-0" id="story_desc">
+                            
+                                
+                            <div class="row contnt my-3 align-items-center">
 
-                                        <div class="col align-self-center">
-                                            <h2 class="h5 mb-0">{{ $story->target_age }}</h2>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h5 class="mb-0">الفئة العمرية</h5> 
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <i class="fas fa-child text-info fa-2x"></i>
-                                        </div>
-
-                                        
-                                    </div>
+                                <div class="col-sm-3 align-self-center">
+                                    <h2 class="h5 mb-0">{{ $story->target_age }}</h2>
                                 </div>
+                                <div class="col-sm-6">
+                                    <h5 class="mb-0">الفئة العمرية</h5> 
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fas fa-child fa-2x"></i>
+                                </div>
+
+                                
                             </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between p-md-1 align-items-center">
-
-                                        <div class="align-self-center">
-                                            <h2 class="h5 mb-0">{{ $story->parts->count() }}</h2>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-
-                                            <div>
-                                                <h5 class="mb-0">عدد الأجزاء</h5> 
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-book text-success fa-2x me-4"></i>
-                                            </div>
-                                        </div>
-
-                                        
-                                    </div>
+                               
+                             
+                            
+                            <div class="contnt row my-3 align-items-center">
+                                <div class="col-sm-3 align-self-center">
+                                    <h2 class="h5 mb-0">{{ $story->parts->count() }}</h2>
                                 </div>
-                            </div> 
+                                <div class="col-sm-6">
+                                    <h5 class="mb-0">عدد الأجزاء</h5> 
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fas fa-book fa-2x"></i>
+                                </div>  
+                            </div>
+                            
                         </div>
                         <div class="slider-btn">
                             {{-- <a class="btn btn-primary kids-active-btn" href="{{ route('stories.show',$story->id) }}">ابدأ</a> --}}

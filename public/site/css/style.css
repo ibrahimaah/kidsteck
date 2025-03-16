@@ -752,8 +752,8 @@ i.fa.fa-angle-right {
     background: #fff;
     transition: .5s ease-in-out;
 }
-.classes-slider-item:hover h4, .classes-slider-item:hover p{
-    color: #fff;
+.classes-slider-item:hover h4, .classes-slider-item:hover p ,.classes-slider-item:hover .contnt{
+    color: #fff !important;
     transition: .5s ease-in-out;
 }
 
@@ -771,6 +771,7 @@ i.fa.fa-angle-right {
     background: #fff;
     color: #EB6025;
 }
+
 .classes-slider-item .slider-img{
     height: 250px;
     overflow: hidden;
