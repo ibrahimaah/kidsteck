@@ -40,7 +40,6 @@ class VolunteerStoryController extends Controller
             'target_age' => $validated['target_age'],
             'added_by' => 'volunteer',
             'volunteer_id' => Auth::id(),
-            'status' => 'pending'
         ]);
 
         // Handle cover image upload using Spatie Media Library

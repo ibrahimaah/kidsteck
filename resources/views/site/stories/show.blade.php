@@ -55,6 +55,14 @@
         </div>
     </div> --}}
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('stories') }}">مكتبة القصص</a></li> 
+          <li class="breadcrumb-item active">تفاصيل القصة - {{ $story->title }}</li> 
+          
+        </ol>
+      </nav>
+
     <!-- Story Parts -->
     <div class="story-parts mt-5">
         <h2 class="text-center mb-4">🔹 أجزاء القصة 🔹</h2>

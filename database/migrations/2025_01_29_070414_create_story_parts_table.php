@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('story_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('order'); // To sort parts 
             $table->timestamps();
 

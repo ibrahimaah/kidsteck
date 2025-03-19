@@ -33,4 +33,12 @@ class Story extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
+    
+
+    // Scope for active stories
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

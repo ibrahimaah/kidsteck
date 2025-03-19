@@ -24,8 +24,16 @@
     }
 </style>
 
-<div class="container">
-    <section class="text-center my-5">
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('stories') }}">مكتبة القصص</a></li> 
+          <li class="breadcrumb-item"><a href="{{ route('stories.show',$storyPart->story->id) }}">تفاصيل القصة - {{ $storyPart->story->title }}</a></li> 
+          <li class="breadcrumb-item active">تصفح الجزء - {{ $storyPart->title }}</li> 
+          
+        </ol>
+      </nav>
+    <section class="text-center pt-4">
         <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
         <p>{{ $storyPart->description }}</p>
     
@@ -38,7 +46,8 @@
         </div>
     
         <!-- Take Quiz Button (Initially Locked) -->
-        <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
+        {{-- <a href="{{ route('story_parts.quiz', $storyPart->id) }}"  --}}
+        <a href="#" 
            id="quizBtn" 
            class="btn btn-primary">
            {{-- class="btn btn-primary quiz-btn locked"> --}}

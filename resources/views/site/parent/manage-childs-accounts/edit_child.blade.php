@@ -3,9 +3,13 @@
 @section('content')
 
 <div class="container mt-4">
-    <div class="section-title mb-3">
-        <h2 class="text-primary">تعديل حساب الطفل</h2> 
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('parent.dashboard') }}">لوحة التحكم</a></li> 
+          <li class="breadcrumb-item"><a href="{{ route('parent.manage-accounts') }}">إدارة حسابات الأطفال</a></li> 
+          <li class="breadcrumb-item active">تعديل حساب طفل</li>
+        </ol>
+      </nav>
 
     <div class="card p-4">
 
@@ -92,7 +96,7 @@
 
             <div class="row">
                 <button type="submit" class="btn btn-primary w-25">حفظ التعديلات</button>
-                <a href="{{ route('parent.dashboard') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+                <a href="{{ route('parent.manage-accounts') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
             </div>
         </form>
     </div>

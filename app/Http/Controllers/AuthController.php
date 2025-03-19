@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function showRegisterForm()
     {
         $roles = Role::where('name', '!=', 'child')->where('name', '!=', 'admin')->get();
-        return view('site.auth.register',compact('roles'));
+        return view('site.auth.register', compact('roles'));
     }
 
     public function register(Request $request)
@@ -29,8 +29,8 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
             'role' => 'required|exists:roles,id',
         ], [], __('validation.attributes'));
-        
-         // Create user
+
+        // Create user
         $user = User::create([
             'name' => $request->name,
             'username' => $request->name,
@@ -44,35 +44,32 @@ class AuthController extends Controller
 
         if ($user->is_parent()) {
             return redirect()->route('parent.dashboard');
+        } elseif ($user->is_volunteer()) {
+            return redirect()->route('volunteer.dashboard');
         }
         return redirect()->route('home');
-
     }
-   
 
-      // Handle login request
-      public function login(Request $request)
-      {
-          $request->validate([
-              'email' => 'required|email',
-              'password' => 'required',
-          ], [], __('validation.attributes'));
-  
-          if (Auth::attempt($request->only('email', 'password'))) 
-          {
-                if (auth()->user()->is_parent()) 
-                {
-                    return redirect()->route('parent.dashboard');
-                }
-                elseif (auth()->user()->is_volunteer()) 
-                {
-                    return redirect()->route('volunteer.dashboard');
-                }
-              return redirect()->route('home');
-          }
-  
-          return back()->withErrors(['email' => 'بيانات تسجيل الدخول غير صحيحة']);
-      }
+
+    // Handle login request
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ], [], __('validation.attributes'));
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            if (auth()->user()->is_parent()) {
+                return redirect()->route('parent.dashboard');
+            } elseif (auth()->user()->is_volunteer()) {
+                return redirect()->route('volunteer.dashboard');
+            }
+            return redirect()->route('home');
+        }
+
+        return back()->withErrors(['email' => 'بيانات تسجيل الدخول غير صحيحة']);
+    }
 
 
     public function logout(Request $request)

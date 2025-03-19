@@ -24,8 +24,8 @@
                 <th>#</th> 
                 <th>العنوان</th>
                 <th>الوصف</th>
-                <th>النوع</th>
-                <th>الفئة العمرية المستهدفة</th>
+                {{-- <th>النوع</th>
+                <th>الفئة العمرية المستهدفة</th> --}}
                 <th>الحالة</th>
                 <th>الإجراءات</th>
             </tr>
@@ -37,8 +37,8 @@
           
                 <td class="align-middle">{{ $story->title }}</td>
                 <td class="align-middle">{{ Str::limit($story->description, 50) }}</td>
-                <td class="align-middle">{{ $story->category->name }}</td>
-                <td class="align-middle">{{ $story->target_age }}</td>
+                {{-- <td class="align-middle">{{ $story->category->name }}</td>
+                <td class="align-middle">{{ $story->target_age }}</td> --}}
                 <td class="align-middle">
                     @php
                         $statusClasses = [

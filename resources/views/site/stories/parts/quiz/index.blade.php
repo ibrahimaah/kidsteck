@@ -30,6 +30,12 @@
 
 <section class="text-center my-4 pt-5">
     <h2 class="mb-3"> اختبار: {{ $storyPart->title }} 📝</h2>
+
+    @if($storyPart->questions->Empty())
+        <div class="alert alert-warning text-center">
+            لم يتم إضافة أسئلة من قبل الأدمن بعد
+        </div>
+    @else 
     <div class="quiz-container">
         @foreach($storyPart->questions as $question)
             <div class="mb-4">
@@ -50,6 +56,7 @@
             ✅ العودة إلى القصة
         </a>
     </div>
+    @endif
 </section>
 
 <script>

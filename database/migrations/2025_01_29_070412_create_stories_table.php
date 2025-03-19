@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('added_by',['admin','volunteer'])->default('admin');
             $table->foreignId('volunteer_id')->nullable()->constrained('users');
             $table->foreignId('category_id')->constrained(); 
-            $table->enum('status',['pending','accepted','rejected'])->default('pending');
+            // $table->enum('status',['pending','accepted','rejected'])->default('pending');
             $table->boolean('is_active')->default(false);
         });
     }

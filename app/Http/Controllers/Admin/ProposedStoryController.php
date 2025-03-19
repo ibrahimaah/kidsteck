@@ -37,4 +37,12 @@ class ProposedStoryController extends Controller
         
         return redirect()->route('admin.proposed-stories')->with('success','تم رفض المقترح بنجاح');
     }
+
+    public function delete($id)
+    {
+        $proposed_story = ProposedStory::findOrFail($id); 
+        $proposed_story->delete();
+        
+        return redirect()->route('admin.proposed-stories')->with('success','تم حذف المقترح بنجاح');
+    }
 }

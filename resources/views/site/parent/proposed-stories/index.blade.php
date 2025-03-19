@@ -58,9 +58,10 @@
                 </td>
                 
                 <td class="align-middle">
+                    @if($proposed_story->status == 'pending')
                     <a href="{{ route('parent.proposed_stories.edit', $proposed_story->id) }}"
                         class="btn btn-warning btn-sm">تعديل</a>
-
+                    @endif
                     <form action="{{ route('parent.proposed_stories.delete', $proposed_story->id) }}" method="POST"
                         class="d-inline" onsubmit="return confirm('هل أنت متأكد؟')">
                         @csrf

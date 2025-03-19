@@ -90,6 +90,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('proposed-stories/{id}/show', [AdminProposedStoryController::class, 'show'])->name('admin.proposed-stories.show');
     Route::post('proposed-stories/{id}/accept', [AdminProposedStoryController::class, 'accept'])->name('admin.proposed-stories.accept');
     Route::post('proposed-stories/{id}/reject', [AdminProposedStoryController::class, 'reject'])->name('admin.proposed-stories.reject');
+    Route::post('proposed-stories/{id}/delete', [AdminProposedStoryController::class, 'delete'])->name('admin.proposed-stories.delete');
 });
 
 

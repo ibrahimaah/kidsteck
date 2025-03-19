@@ -68,7 +68,16 @@
                             @csrf 
                             <button type="submit" class="btn btn-danger btn-sm">رفض</button>
                         </form> 
+
+                        
                     @endif
+                    <form action="{{ route('admin.proposed-stories.delete', $proposed_story->id) }}" 
+                            method="POST" 
+                            class="d-inline" 
+                            onsubmit="return confirm('هل أنت متأكد؟')">
+                        @csrf 
+                        <button type="submit" class="btn btn-secondary btn-sm">حذف</button>
+                    </form> 
                         
                     </td>
                 </tr>

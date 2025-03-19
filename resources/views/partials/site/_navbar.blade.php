@@ -1,5 +1,5 @@
  
-    <div class="menu" style="background-color: #ffd58d !important">
+    <div class="menu" style="background-color: #ffe3b3 !important">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
 

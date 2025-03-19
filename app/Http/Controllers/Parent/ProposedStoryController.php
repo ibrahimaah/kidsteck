@@ -12,7 +12,7 @@ class ProposedStoryController extends Controller
 {
     public function index()
     {
-        $proposed_stories = ProposedStory::all();
+        $proposed_stories = ProposedStory::where('parent_id',Auth::id())->get();
         return view('site.parent.proposed-stories.index',compact('proposed_stories'));
     }
 
@@ -36,6 +36,7 @@ class ProposedStoryController extends Controller
             'category_id' => $validated['category_id'],
             'description' => $validated['description'],
             'target_age' => $validated['target_age'],
+            'parent_id' => Auth::id()
         ]);
  
 

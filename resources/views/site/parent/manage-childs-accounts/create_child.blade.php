@@ -104,7 +104,7 @@
         <!-- Submit Button -->
         <div class="row">
             <button type="submit" class="btn btn-primary w-25">حفظ</button>
-            <a href="{{ route('parent.dashboard') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
+            <a href="{{ route('parent.manage-accounts') }}" class="btn btn-danger w-25 mx-2">رجوع</a>
         </div>
     </form>
 </div>
