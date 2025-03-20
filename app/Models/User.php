@@ -85,5 +85,9 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(User::class, 'parent_id');
     }
 
+    public function storyParts()
+    {
+        return $this->belongsToMany(StoryPart::class, 'story_part_user')->withTimestamps();
+    }
     
 }

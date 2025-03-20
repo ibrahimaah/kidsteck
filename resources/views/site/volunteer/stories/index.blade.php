@@ -38,7 +38,7 @@
                 <td class="align-middle">{{ $story->title }}</td>
                 <td class="align-middle">{{ Str::limit($story->description, 50) }}</td>
                 {{-- <td class="align-middle">{{ $story->category->name }}</td>
-                <td class="align-middle">{{ $story->target_age }}</td> --}}
+                <td class="align-middle">{{ $story->target_age }}</td> 
                 <td class="align-middle">
                     @php
                         $statusClasses = [
@@ -58,7 +58,12 @@
                         {{ $statusLabels[$story->status] ?? 'غير معروف' }}
                     </span>
                 </td>
-                
+                --}}
+                <td class="align-middle">
+                    <span class="badge bg-{{ $story->is_active ? 'success' : 'danger' }}">
+                        {{ $story->is_active ? 'منشورة' : 'غير منشورة' }}
+                    </span>
+                </td>
                 <td class="align-middle">
 
                     <a href="{{ route('volunteer.story_parts.index', $story->id) }}"

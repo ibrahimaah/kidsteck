@@ -73,9 +73,16 @@
                         <div class="card-body text-center">
                             <h4 class="mb-3 text-primary">{{ $part->title }}</h4>
                             <p>{{ $part->description }}</p>
-                            <a href="{{ route('stories.part.show',$part->id) }}" class="btn btn-primary">
-                                <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
-                            </a>
+
+                            @if (auth()->user()->is_child() && !in_array($part->id,auth()->user()->storyParts->pluck('id')->toArray())) <!-- Replace with your condition -->
+                                <a href="#" class="btn btn-secondary disabled" style="pointer-events: none; opacity: 0.6;">
+                                    <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
+                                </a>
+                            @else
+                                <a href="{{ route('stories.part.show', $part->id) }}" class="btn btn-primary">
+                                    <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

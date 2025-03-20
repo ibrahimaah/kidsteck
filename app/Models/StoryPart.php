@@ -33,4 +33,9 @@ class StoryPart extends Model implements HasMedia
     {
         return $this->hasMany(Question::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'story_part_user')->withTimestamps();
+    }
 }

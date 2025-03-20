@@ -47,12 +47,17 @@
     
         <!-- Take Quiz Button (Initially Locked) -->
         {{-- <a href="{{ route('story_parts.quiz', $storyPart->id) }}"  --}}
-        <a href="#" 
-           id="quizBtn" 
-           class="btn btn-primary">
-           {{-- class="btn btn-primary quiz-btn locked"> --}}
-             اجتياز الاختبار 📝
-        </a>
+        
+        @auth
+            @if(auth()->user()->is_child())
+                <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
+                    id="quizBtn" 
+                    class="btn btn-primary">
+                    {{-- class="btn btn-primary quiz-btn locked"> --}}
+                    اجتياز الاختبار 📝
+                </a>
+            @endif 
+        @endauth
     </section>
 </div>
 

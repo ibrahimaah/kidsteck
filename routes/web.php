@@ -34,7 +34,9 @@ use Illuminate\Support\Facades\Route;
 //////////////////////////////////////////////////////////////////////////////
 //// -- Site Routes
 //////////////////////////////////////////////////////////////////////////////
-
+Route::get('tmp',function(){
+    dd(auth()->user()->storyParts->pluck('id')->toArray());
+});
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.loginForm');
     Route::post('admin/login', [AuthController::class, 'authenticate'])->name('admin.authenticate');
@@ -111,6 +113,9 @@ Route::get('stories', [StoryController::class, 'index'])->name('stories');
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
 Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
 Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
+
+
+
 
 Route::middleware(['auth', 'parent'])->group(function () {
     Route::get('parent-dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
