@@ -62,6 +62,7 @@
    <script src="{{ asset('site/js/jquery.meanmenu.min.js') }}"></script>
    <script src="{{ asset('site/js/kids.js') }}"></script>
    
+   @stack('js')
    
 </body>
 </html>

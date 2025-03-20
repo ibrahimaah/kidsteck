@@ -3,73 +3,82 @@
 @section('content')
 
 <style>
-    .quiz-container {
-        max-width: 600px;
-        margin: auto;
-        background: #f9f9f9;
+    body {
+        background-color: #f9f9f9;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
         padding: 20px;
+    }
+
+    .quiz-container {
+        background: linear-gradient(135deg, #2575fc,var(--main-color) );
         border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        text-align: center;
+        padding: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        color: white;
     }
-    .option-btn {
+
+    .question {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .options label {
+        display: block;
         width: 100%;
-        margin-top: 10px;
+        margin: 10px 0;
         font-size: 1.2rem;
-        transition: all 0.3s ease-in-out;
-    }
-    .correct {
-        background-color: #4CAF50 !important;
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
         color: white;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+        cursor: pointer;
     }
-    .wrong {
-        background-color: #f44336 !important;
-        color: white;
+
+    .options input[type="radio"] {
+        display: none;
+        /* Hide radio buttons */
+    }
+
+    .options label:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        transform: scale(1.05);
+    }
+
+    .options input[type="radio"]:checked+label {
+        background-color: #ffc107 !important;
+        color: black;
     }
 </style>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="quiz-container text-center">
+                <h1 class="mb-4">{{ $storyPart->title }} Quiz</h1>
 
-<section class="text-center my-4 pt-5">
-    <h2 class="mb-3"> اختبار: {{ $storyPart->title }} 📝</h2>
-
-    @if($storyPart->questions->Empty())
-        <div class="alert alert-warning text-center">
-            لم يتم إضافة أسئلة من قبل الأدمن بعد
-        </div>
-    @else 
-    <div class="quiz-container">
-        @foreach($storyPart->questions as $question)
-            <div class="mb-4">
-                <h4>{{ $question->question }}</h4>
-                @foreach($question->options as $option)
-                    <button class="btn btn-outline-primary option-btn" 
-                            onclick="checkAnswer(this, {{ $option->is_correct ? 'true' : 'false' }})">
-                        {{ $option->option_text }}
-                    </button>
+                @foreach($storyPart->questions as $index => $question)
+                <div class="question mt-4">{{ $index + 1 }}. {{ $question->question }}</div>
+                <div class="options">
+                    @foreach($question->options as $option)
+                    <input type="radio" id="q{{ $question->id }}a{{ $option->id }}" name="q{{ $question->id }}">
+                    <label for="q{{ $question->id }}a{{ $option->id }}">{{ $option->option_text }}</label>
+                    @endforeach
+                </div>
                 @endforeach
+
             </div>
-        @endforeach
-
-        <a href="{{ route('stories.show', $storyPart->story_id) }}" 
-           class="btn btn-success mt-4" 
-           id="nextBtn" 
-           style="display:none;">
-            ✅ العودة إلى القصة
-        </a>
+        </div>
     </div>
-    @endif
-</section>
-
-<script>
-    function checkAnswer(button, isCorrect) {
-        if (isCorrect) {
-            button.classList.add('correct');
-            button.innerHTML += " 🎉";
-            setTimeout(() => document.getElementById('nextBtn').style.display = 'block', 500);
-        } else {
-            button.classList.add('wrong');
-            button.innerHTML += " ❌";
-        }
-    }
-</script>
-
+</div>
 @endsection
+ 
+
+
+@push('js') 
+<script>
+   
+</script>
+@endpush

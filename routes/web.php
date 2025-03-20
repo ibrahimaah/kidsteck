@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Http\Controllers\Parent\ProposedStoryController;
 use App\Http\Controllers\Admin\ProposedStoryController as AdminProposedStoryController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Volunteer\DashboardController as VolunteerDashboardController;
 use App\Http\Controllers\Volunteer\ProposedStoryController as VolunteerProposedStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryController;
@@ -113,6 +114,7 @@ Route::get('stories', [StoryController::class, 'index'])->name('stories');
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
 Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
 Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
+Route::post('/submit-quiz', [QuizController::class, 'submitQuiz'])->name('submitQuiz');
 
 
 
