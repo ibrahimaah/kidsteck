@@ -38,4 +38,18 @@ class StoryPart extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class, 'story_part_user')->withTimestamps();
     }
+
+    public function isLast()
+    {
+        return $this->order === static::where('story_id', $this->story_id)->max('order');
+    }
+
+    public function nextPart()
+    {
+        if (!$this->isLast()) 
+        {
+            return static::where('story_id',$this->story_id)->where('order','>',$this->order)->orderBy('order','asc')->first();
+        }
+        return null;
+    }
 }

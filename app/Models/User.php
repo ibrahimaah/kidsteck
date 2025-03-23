@@ -87,7 +87,34 @@ class User extends Authenticatable implements HasMedia
 
     public function storyParts()
     {
-        return $this->belongsToMany(StoryPart::class, 'story_part_user')->withTimestamps();
+        return $this->belongsToMany(StoryPart::class, 'story_part_user')->withPivot('is_quiz_success')->withTimestamps();
+    }
+
+    public function has_passed_quiz($story_part_id)
+    {
+        return $this->is_child() && $this->storyParts()
+                    ->wherePivot('story_part_id', $story_part_id)  // Assuming the pivot table has 'story_part_id'
+                    ->wherePivot('is_quiz_success', true)  // Check if the user has passed the quiz
+                    ->exists();
+    }
+
+    public function can_access_this_part($story_part_id)
+    {
+        if ($this->is_child()) 
+        {
+            if($this->storyParts()->where('story_part_id',$story_part_id)->exists())
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+        else 
+        {
+            return true;
+        }
     }
     
 }

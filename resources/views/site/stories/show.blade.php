@@ -67,26 +67,31 @@
     <div class="story-parts mt-5">
         <h2 class="text-center mb-4">🔹 أجزاء القصة 🔹</h2>
         <div class="row justify-content-center">
-            @foreach($story->parts as $part)
+            @forelse($storyParts as $part)
                 <div class="col-md-8">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
                             <h4 class="mb-3 text-primary">{{ $part->title }}</h4>
                             <p>{{ $part->description }}</p>
 
-                            @if (auth()->user()->is_child() && !in_array($part->id,auth()->user()->storyParts->pluck('id')->toArray())) <!-- Replace with your condition -->
-                                <a href="#" class="btn btn-secondary disabled" style="pointer-events: none; opacity: 0.6;">
+                              
+                            @if(auth()->user()->can_access_this_part($part->id))
+                                <a href="{{ route('stories.part.show', $part->id) }}" class="btn btn-primary">
                                     <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
                                 </a>
-                            @else
-                                <a href="{{ route('stories.part.show', $part->id) }}" class="btn btn-primary">
+                            @else    
+                                <a href="#" class="btn btn-secondary disabled" style="pointer-events: none; opacity: 0.6;">
                                     <span>تصفح الجزء </span> <span class="fw-bold">({{ $part->order }})</span>
                                 </a>
                             @endif
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+            <div class="alert alert-warning text-center">
+                لم يقم الأدمن بإضافة أجزاء لهذه القصة
+            </div>
+            @endforelse
         </div>
     </div>
 </div>

@@ -109,12 +109,17 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [SiteAuthController::class, 'login'])->name('login');
 });
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('stories', [StoryController::class, 'index'])->name('stories');
-Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
-Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
-Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
-Route::post('/submit-quiz', [QuizController::class, 'submitQuiz'])->name('submitQuiz');
+Route::middleware('auth')->group(function(){
+    Route::get('stories', [StoryController::class, 'index'])->name('stories');
+    Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
+    Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
+    Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
+    Route::post('/quiz-result', [QuizController::class, 'submitQuiz'])->name('quiz.submit'); 
+    Route::get('stories/view-certificate/{story_id}', [QuizController::class, 'certificate'])->name('view-certificate');
+});
+
 
 
 

@@ -29,10 +29,9 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('stories') }}">مكتبة القصص</a></li> 
           <li class="breadcrumb-item"><a href="{{ route('stories.show',$storyPart->story->id) }}">تفاصيل القصة - {{ $storyPart->story->title }}</a></li> 
-          <li class="breadcrumb-item active">تصفح الجزء - {{ $storyPart->title }}</li> 
-          
+          <li class="breadcrumb-item active"><span>تصفح الجزء ({{ $storyPart->order }})</span> - {{ $storyPart->title }}</li> 
         </ol>
-      </nav>
+    </nav>
     <section class="text-center pt-4">
         <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
         <p>{{ $storyPart->description }}</p>
@@ -48,16 +47,18 @@
         <!-- Take Quiz Button (Initially Locked) -->
         {{-- <a href="{{ route('story_parts.quiz', $storyPart->id) }}"  --}}
         
-        @auth
-            @if(auth()->user()->is_child())
+        
+        @if(auth()->user()->is_child())
+            @if(!$isQuizSuccess)
                 <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
                     id="quizBtn" 
                     class="btn btn-primary">
                     {{-- class="btn btn-primary quiz-btn locked"> --}}
                     اجتياز الاختبار 📝
                 </a>
-            @endif 
-        @endauth
+            @endif
+        @endif 
+        
     </section>
 </div>
 

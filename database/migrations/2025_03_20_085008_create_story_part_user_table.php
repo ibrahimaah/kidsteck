@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('story_part_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_quiz_success')->default(false);
             $table->timestamps();
 
             // Ensure unique pair of user_id and story_part_id

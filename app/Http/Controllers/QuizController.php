@@ -5,36 +5,62 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question; // Assuming you have a Question model
 use App\Models\Option;
+use App\Models\Story;
+use App\Models\StoryPart;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
     public function submitQuiz(Request $request)
     {
-        // Get the selected answers from the request
-        $answers = $request->input('answers'); // Array of answers: questionId => selectedOptionId
+        $request->validate([
+            'answers' => 'required|array',
+            'answers.*' => 'required', // Ensures each question has an answer
+            'story_part_id' => 'required|exists:story_parts,id',
+        ], [
+            'answers.required' => 'يجب عليك الإجابة على جميع الأسئلة.',
+            'answers.*.required' => 'يجب عليك اختيار إجابة لكل سؤال.',
+        ]);
+        
+        $storyPart = StoryPart::with('questions.options')->findOrFail($request->story_part_id);
 
-        $results = [];
+        $answers = $request->input('answers', []);
+        
+        $score = 0;
+        $totalQuestions = $storyPart->questions->count();
 
-        // Loop through each answer to check if it is correct
-        foreach ($answers as $questionId => $selectedOptionId) {
-            // Fetch the question and its options
-            $question = Question::find($questionId);
-            $selectedOption = $question->options()->find($selectedOptionId); // Get the selected option for this question
+        foreach ($storyPart->questions as $question) 
+        {
+            $correctOption = $question->options->where('is_correct', true)->first();
 
-            // Check if the selected option is correct
-            $isCorrect = $selectedOption && $selectedOption->is_correct;
-
-            // Store the result for this question
-            $results[$questionId] = [
-                'selected' => $selectedOptionId,
-                'isCorrect' => $isCorrect // True if the option is correct, false if not
-            ];
+            if ($correctOption && isset($answers[$question->id]) && $answers[$question->id] == $correctOption->id) {
+                $score++;
+            }
         }
 
-        // Return the result back to the frontend
-        return response()->json([
-            'success' => true,  // Indicating the request was successful
-            'results' => $results // Send the results back (selected option and correctness)
-        ]);
+        $nextPart = $storyPart->nextPart();
+        
+        if ($score == $totalQuestions) 
+        {
+            /** @var \App\Models\User $currentUser */
+            $currentUser = Auth::user(); 
+
+            $currentUser->storyParts()->updateExistingPivot($storyPart->id, ['is_quiz_success' => true]);
+         
+            
+            if ($nextPart) 
+            {
+                $currentUser->storyParts()->attach($nextPart->id, ['is_quiz_success' => false]);
+            } 
+        }
+
+        return view('site.stories.parts.quiz.result', compact('score', 'totalQuestions', 'storyPart','nextPart'));
+    }
+
+    
+    public function certificate($story_id)
+    {
+        $story = Story::findOrFail($story_id);
+        return view('site.stories.parts.quiz.certificate',compact('story'));
     }
 }
