@@ -66,6 +66,8 @@
     .submit-btn:hover {
         background-color: #218838;
     }
+     /* Points Display */
+    
 </style>
 
 <div class="container my-5">
@@ -124,4 +126,6 @@
     </div>
 </div>
 
+
+ 
 @endsection

@@ -116,5 +116,15 @@ class User extends Authenticatable implements HasMedia
             return true;
         }
     }
+
+    public function points()
+    {
+        return $this->hasMany(UserPoint::class);
+    }
+
+    public function totalPoints()
+    {
+        return $this->points()->sum('points');
+    }
     
 }

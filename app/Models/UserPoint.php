@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserPoint extends Model
 {
-    use HasFactory;
-    public $timestamps = false;
+    use HasFactory; 
+
+    protected $fillable = [
+        'user_id',
+        'points',
+        'reason',
+    ];
+
+    /**
+     * Get the user associated with the points.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

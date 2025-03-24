@@ -14,6 +14,7 @@ use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Http\Controllers\Parent\ProposedStoryController;
 use App\Http\Controllers\Admin\ProposedStoryController as AdminProposedStoryController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserPointController;
 use App\Http\Controllers\Volunteer\DashboardController as VolunteerDashboardController;
 use App\Http\Controllers\Volunteer\ProposedStoryController as VolunteerProposedStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryController;
@@ -36,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 //// -- Site Routes
 //////////////////////////////////////////////////////////////////////////////
 Route::get('tmp',function(){
+    return view('tmp');
     dd(auth()->user()->storyParts->pluck('id')->toArray());
 });
 Route::middleware('guest')->group(function () {
@@ -117,7 +119,7 @@ Route::middleware('auth')->group(function(){
     Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
     Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
     Route::post('/quiz-result', [QuizController::class, 'submitQuiz'])->name('quiz.submit'); 
-    Route::get('stories/view-certificate/{story_id}', [QuizController::class, 'certificate'])->name('view-certificate');
+    // Route::post('award-points',[UserPointController::class,'award_points'])->name('award-points');
 });
 
 

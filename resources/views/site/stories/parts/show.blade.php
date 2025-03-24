@@ -23,6 +23,8 @@
         pointer-events: none;
     }
 </style>
+<link rel="stylesheet" href="{{ asset('site/css/plyr.css') }}" />
+<script src="{{ asset('site/js/plyr.js') }}"></script>
 
 <div class="container my-5">
     <nav aria-label="breadcrumb">
@@ -36,19 +38,23 @@
         <h2 class="mb-3"> {{ $storyPart->title }} 📖</h2>
         <p>{{ $storyPart->description }}</p>
     
-        <!-- Video Section -->
+       <!-- Video Section -->
         <div class="video-container">
-            <video id="storyVideo" controls>
+            <video id="storyVideo" class="plyr" controls>
                 <source src="{{ $storyPart->getFirstMediaUrl('videos') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+
+ 
+
     
         <!-- Take Quiz Button (Initially Locked) -->
         {{-- <a href="{{ route('story_parts.quiz', $storyPart->id) }}"  --}}
         
         
-        @if(auth()->user()->is_child())
+        <div class="mt-2">
+            @if(auth()->user()->is_child())
             @if(!$isQuizSuccess)
                 <a href="{{ route('story_parts.quiz', $storyPart->id) }}" 
                     id="quizBtn" 
@@ -58,10 +64,40 @@
                 </a>
             @endif
         @endif 
+        </div>
         
     </section>
 </div>
 
+<script>
+    const player = new Plyr('#storyVideo');
+    player.on('timeupdate', () => {
+        const currentTime = player.currentTime;
+        const duration = player.duration;
+        const percentage = (currentTime / duration) * 100;
+        document.getElementById('videoSlider').value = percentage;
+    });
+ 
+     // Event listener for when the video ends
+    //  player.on('ended', () => {
+    //     // Trigger AJAX POST request when the video ends
+    //     $.ajax({
+    //         url: '/award-points', // Replace with your desired endpoint
+    //         type: 'POST',
+    //         data: {
+    //             _token: '{{ csrf_token() }}', // CSRF token for Laravel 
+    //         },
+    //         success: function(response) {
+    //             alert('success');
+    //             // Handle the successful response here
+    //         },
+    //         error: function(xhr, status, error) {
+    //             alert('error');
+    //             // Handle the error here
+    //         }
+    //     });
+    // });
+</script>
 <script>
     // document.addEventListener('DOMContentLoaded', function() {
     //     let video = document.getElementById('storyVideo');

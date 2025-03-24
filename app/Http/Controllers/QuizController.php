@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Reason;
 use Illuminate\Http\Request;
-use App\Models\Question; // Assuming you have a Question model
-use App\Models\Option;
-use App\Models\Story;
 use App\Models\StoryPart;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +20,9 @@ class QuizController extends Controller
             'answers.*.required' => 'يجب عليك اختيار إجابة لكل سؤال.',
         ]);
         
+        /** @var \App\Models\User $currentUser */
+        $currentUser = Auth::user(); 
+
         $storyPart = StoryPart::with('questions.options')->findOrFail($request->story_part_id);
 
         $answers = $request->input('answers', []);
@@ -42,8 +43,6 @@ class QuizController extends Controller
         
         if ($score == $totalQuestions) 
         {
-            /** @var \App\Models\User $currentUser */
-            $currentUser = Auth::user(); 
 
             $currentUser->storyParts()->updateExistingPivot($storyPart->id, ['is_quiz_success' => true]);
          
@@ -54,13 +53,15 @@ class QuizController extends Controller
             } 
         }
 
-        return view('site.stories.parts.quiz.result', compact('score', 'totalQuestions', 'storyPart','nextPart'));
+        $points = null;
+        if ($score >= $totalQuestions / 2) 
+        {
+            $points = awardPoints($currentUser->id,$score,Reason::Quiz->value);
+        }
+
+        return view('site.stories.parts.quiz.result', compact('score', 'totalQuestions', 'storyPart','nextPart','points'));
     }
 
-    
-    public function certificate($story_id)
-    {
-        $story = Story::findOrFail($story_id);
-        return view('site.stories.parts.quiz.certificate',compact('story'));
-    }
+     
+     
 }

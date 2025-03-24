@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('user_points', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-        //     $table->integer('total_points')->default(0); // Total points earned by the user
-        // });
+        Schema::create('user_points', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('points');
+            $table->string('reason')->nullable(); // e.g., "Completed quiz"
+            $table->timestamps();
+        });
     }
 
     /**

@@ -51,6 +51,18 @@
         background: orangered;
         transform: scale(1.1);
     }
+    .points-container {
+        margin-top: 20px;
+        padding: 15px;
+        background: #ffeb3b;
+        border-radius: 10px;
+        color: black;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        /* display: none; Initially hidden */
+    }
 </style>
 
 <div class="container mt-5">
@@ -66,7 +78,11 @@
         @if($score == $totalQuestions)
             <div class="emoji">🎉🎊</div>
             <h2>رائع جدًا!</h2>
-            <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p>
+             <!-- Points Earned Section -->
+            <div id="pointsContainer" class="points-container m-3">
+                🎉 لقد حصلت على <span id="pointsEarned">{{ $points }}</span> نقطة! 🎉
+            </div>
+            {{-- <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p> --}}
             <p class="message text-light">أنت بطل حقيقي! 🚀💫</p>
             @if($nextPart)
                 <a href="{{ route('stories.part.show',$nextPart->id) }}" class="retry-btn"> متابعة </a>
@@ -78,13 +94,16 @@
         @elseif($score >= $totalQuestions / 2)
             <div class="emoji">😊👍</div>
             <h2>عمل رائع!</h2>
-            <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p>
+            {{-- <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p> --}}
+            <div id="pointsContainer" class="points-container m-3">
+                🎉 لقد حصلت على <span id="pointsEarned">{{ $points }}</span> نقطة! 🎉
+            </div>
             <p class="message text-light">جيد جدًا! استمر في التعلم! 📖💡</p>
             <a href="{{ url()->previous() }}" class="retry-btn">🔄 إعادة الاختبار</a>
         @else
             <div class="emoji">😃🌟</div>
             <h2>محاولة جيدة!</h2>
-            <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p>
+            {{-- <p class="score text-light">لقد حصلت على {{ $score }} من {{ $totalQuestions }}!</p> --}}
             <p class="message text-light">لا تقلق، يمكنك المحاولة مرة أخرى! 💪🎯</p>
             <a href="{{ url()->previous() }}" class="retry-btn">🔄 إعادة الاختبار</a>
         @endif
@@ -93,3 +112,11 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+{{-- <script>
+    window.addEventListener('beforeunload', function (event) {
+        event.returnValue = 'Are you sure you want to leave this page? Any unsaved changes will be lost.';
+    });
+</script> --}}
+@endpush
