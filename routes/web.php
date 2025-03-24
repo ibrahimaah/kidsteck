@@ -13,12 +13,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Parent\ParentDashboardController;
 use App\Http\Controllers\Parent\ProposedStoryController;
 use App\Http\Controllers\Admin\ProposedStoryController as AdminProposedStoryController;
+use App\Http\Controllers\ChildDashboardController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserPointController;
 use App\Http\Controllers\Volunteer\DashboardController as VolunteerDashboardController;
 use App\Http\Controllers\Volunteer\ProposedStoryController as VolunteerProposedStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryPartController;
+use App\Models\Story;
+use App\Models\StoryPartUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -37,8 +40,11 @@ use Illuminate\Support\Facades\Route;
 //// -- Site Routes
 //////////////////////////////////////////////////////////////////////////////
 Route::get('tmp',function(){
-    return view('tmp');
-    dd(auth()->user()->storyParts->pluck('id')->toArray());
+    $story = Story::find(5);
+    // dd($story);
+    dd($story->parts()->count());
+    // return view('tmp');
+    // dd(auth()->user()->storyParts->pluck('id')->toArray());
 });
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.loginForm');
@@ -118,7 +124,8 @@ Route::middleware('auth')->group(function(){
     Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
     Route::get('stories/parts/{story_part_id}', [SiteStoryPartController::class, 'show'])->name('stories.part.show');
     Route::get('stories/parts/{story_part_id}/quiz', [SiteStoryPartController::class, 'show_quiz'])->name('story_parts.quiz');
-    Route::post('/quiz-result', [QuizController::class, 'submitQuiz'])->name('quiz.submit'); 
+    Route::post('/quiz-result', [QuizController::class, 'submitQuiz'])->name('quiz.submit');
+    Route::get('my-page',[ChildDashboardController::class,'index'])->name('child-dashboard');
     // Route::post('award-points',[UserPointController::class,'award_points'])->name('award-points');
 });
 

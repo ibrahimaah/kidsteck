@@ -1,5 +1,5 @@
  
-    <div class="menu" style="background-color: #ffe3b3 !important">
+    <div class="menu" style="background-color: var(--site-nav-bg-color) !important">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -37,6 +37,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ Route::currentRouteName() == 'volunteer.dashboard' ? 'active' : '' }}"
                                         href="{{ route('volunteer.dashboard') }}">لوحة التحكم</a>
+                                </li>
+                            @endif 
+
+                            @if(auth()->user()->is_child())
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::currentRouteName() == 'volunteer.dashboard' ? 'active' : '' }}"
+                                        href="{{ route('child-dashboard') }}">{{ auth()->user()->name }}</a>
                                 </li>
                             @endif 
                         
