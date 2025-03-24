@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Parent;
 
 use App\Http\Controllers\Controller;
+use App\Models\KidActivityLog;
+use App\Models\Story;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -116,5 +118,20 @@ class ParentDashboardController extends Controller
         return redirect()->back()->with('success', 'تم حذف حساب الطفل بنجاح');
     }
 
-    
+    public function track_child($user_id)
+    {
+        $stories = Story::with('parts')->get();
+        $user = User::findOrFail($user_id);
+        
+        $seconds = KidActivityLog::where('kid_id', $user->id)->sum('duration');
+        $hours = floor($seconds / 3600);
+        $minutes = floor(($seconds % 3600) / 60);
+        $remainingSeconds = $seconds % 60;
+        
+        $lastLog = KidActivityLog::where('kid_id', $user_id)
+        ->latest('login_at') // Get the latest login entry
+        ->first();
+
+        return view('site.parent.manage-childs-accounts.track',compact('stories','user','seconds','hours','minutes','remainingSeconds','lastLog'));
+    }
 }

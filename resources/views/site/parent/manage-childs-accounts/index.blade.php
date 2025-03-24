@@ -53,6 +53,7 @@
                         <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                     </form>
 
+                    <a href="{{ route('parent.track_user_child',$user->id) }}" class="btn btn-sm btn-info">تتبع الطفل</a>
                 </td>
             </tr>
             @endforeach

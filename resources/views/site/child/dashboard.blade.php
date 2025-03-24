@@ -100,6 +100,10 @@
     </div>
 
     @forelse ($stories as $story)
+
+    @if(!$story->parts()->exists())
+        @continue 
+    @endif  
         <div class="progress-container">   
             <h3 class="mb-4">📖 {{ $story->title }}</h3> 
             <div class="progress-bar my-4">

@@ -140,6 +140,7 @@ Route::middleware(['auth', 'parent'])->group(function () {
     Route::get('parent-dashboard/edit-child-account/{user_id}',  [ParentDashboardController::class, 'edit_child'])->name('parent.edit_user_child');
     Route::post('parent-dashboard/store-child-account', [ParentDashboardController::class, 'store_child'])->name('parent.store_user_child');
     Route::put('parent-dashboard/update-child-account/{user_id}', [ParentDashboardController::class, 'update_child'])->name('parent.update_user_child');
+    Route::get('parent-dashboard/track-child-account/{user_id}', [ParentDashboardController::class, 'track_child'])->name('parent.track_user_child');
     Route::delete('parent-dashboard/delete-child-account/{user_id}', [ParentDashboardController::class, 'remove_child'])->name('parent.remove_user_child');
 
     Route::get('parent-dashboard/proposed-stories', [ProposedStoryController::class, 'index'])->name('parent.proposed-stories');
