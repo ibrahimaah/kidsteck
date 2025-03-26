@@ -20,6 +20,7 @@ use App\Http\Controllers\Volunteer\DashboardController as VolunteerDashboardCont
 use App\Http\Controllers\Volunteer\ProposedStoryController as VolunteerProposedStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryController;
 use App\Http\Controllers\Volunteer\VolunteerStoryPartController;
+use App\Models\Question;
 use App\Models\Story;
 use App\Models\StoryPartUser;
 use App\Models\User;
@@ -40,11 +41,9 @@ use Illuminate\Support\Facades\Route;
 //// -- Site Routes
 //////////////////////////////////////////////////////////////////////////////
 Route::get('tmp',function(){
-    $story = Story::find(5);
-    // dd($story);
-    dd($story->parts()->count());
-    // return view('tmp');
-    // dd(auth()->user()->storyParts->pluck('id')->toArray());
+    
+    $num_of_stories = Story::where('is_active',true)->count();
+        dd($num_of_stories);
 });
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.loginForm');

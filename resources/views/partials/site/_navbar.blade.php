@@ -43,7 +43,7 @@
                             @if(auth()->user()->is_child())
                                 <li class="nav-item">
                                     <a class="nav-link {{ Route::currentRouteName() == 'volunteer.dashboard' ? 'active' : '' }}"
-                                        href="{{ route('child-dashboard') }}">{{ auth()->user()->name }}</a>
+                                        href="{{ route('child-dashboard') }}">مرحباً {{ auth()->user()->name }}</a>
                                 </li>
                             @endif 
                         
@@ -53,12 +53,12 @@
                         </li>
                         @endauth 
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteName() == 'about' ? 'active' : '' }}" href="#">من
+                            <a class="nav-link {{ Route::currentRouteName() == 'about' ? 'active' : '' }}" href="#about-us">من
                                 نحن</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'contact' ? 'active' : '' }}"
-                                href="#">تواصل معنا</a>
+                                href="#contact-us">تواصل معنا</a>
                         </li>
 
                     </ul>

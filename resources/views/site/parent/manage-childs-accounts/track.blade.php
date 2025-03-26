@@ -140,15 +140,17 @@
                     <p>🔴 آخر تسجيل خروج: 
                         {{ $lastLog->logout_at ? Carbon\Carbon::parse($lastLog->logout_at)->diffForHumans() : 'لم يسجل خروج بعد' }}
                     </p>
+
+                    
+                    ⏳ وقت الاستخدام: <span id="time_spent">
+                        {{ $hours > 0 ? $hours . ' ساعة و' : '' }} 
+                        {{ $minutes > 0 ? $minutes . ' دقيقة و' : '' }} 
+                        {{ $remainingSeconds > 0 ? $remainingSeconds . ' ثانية' : '' }}
+                    </span>
                 @else
                     <p>لا يوجد سجلات تسجيل دخول</p>
                 @endif
         
-                ⏳ وقت الاستخدام: <span id="time_spent">
-                    {{ $hours > 0 ? $hours . ' ساعة و' : '' }} 
-                    {{ $minutes > 0 ? $minutes . ' دقيقة و' : '' }} 
-                    {{ $remainingSeconds > 0 ? $remainingSeconds . ' ثانية' : '' }}
-                </span>
             </div>
         </div>
     </div>

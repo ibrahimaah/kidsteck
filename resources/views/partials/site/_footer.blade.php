@@ -10,10 +10,12 @@
 			<div class="col-sm-3 text-center">
 				<h4>روابط مهمة</h4>
 				<ul class="footer-link">
-					<li class="nav-item"><a href="" class="nav-link">الصفحة الرئيسية</a></li>
-					<li class="nav-item"><a href="" class="nav-link">مكتبة القصص</a></li>
-					<li class="nav-item"><a href="" class="nav-link">من نحن</a></li> 
-					<li class="nav-item"><a href="" class="nav-link">تواصل معنا</a></li>
+					<li class="nav-item"><a href="{{ route('home') }}" class="nav-link">الصفحة الرئيسية</a></li>
+				 
+					<li class="nav-item"><a href="{{ route('stories') }}" class="nav-link">مكتبة القصص</a></li>
+					 
+					<li class="nav-item"><a href="#about-us" class="nav-link">من نحن</a></li> 
+					<li class="nav-item"><a href="#contact-us" class="nav-link">تواصل معنا</a></li>
 				</ul>
 			</div>
 			<!-- col-md-4 -->

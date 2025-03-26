@@ -39,7 +39,7 @@
 <!-- ====================================
         End Header Bottom Here
 ========================================= -->
-<section class="about">
+<section class="about" id="about-us">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-12 col-lg-12">
@@ -85,7 +85,7 @@
                 <div class="home-two single-counter">
                     <div class="counter-single-area">
                         <img src="{{ asset('site/images/counter-01.png') }}" alt="">
-                        <span class="counter">1500</span>
+                        <span class="counter">{{ $num_of_kids }}</span>
                         <p>أطفال يتعلمون البرمجة</p>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="home-two single-counter">
                     <div class="counter-single-area">
                         <img src="{{ asset('site/images/counter-02.png') }}" alt="">
-                        <span class="counter">50</span>
+                        <span class="counter">{{ $num_of_quizzes }}</span>
                         <p>اختبارات تفاعلية</p>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="home-two single-counter">
                     <div class="counter-single-area">
                         <img src="{{ asset('site/images/counter-03.png') }}" alt="">
-                        <span class="counter">30</span>
+                        <span class="counter">{{ $num_of_stories }}</span>
                         <p>قصص ممتعة للتعلم</p>
                     </div>
                 </div>
@@ -118,4 +118,36 @@
 	<div class="airplane"><img src="{{ asset('site/images/airplane.png') }}" alt=""></div>
 
 </div>
+
+
+<section class="contact-us" id="contact-us">
+    <div class="container">
+        <div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="section-title">
+					<h2>تواصل معنا</h2>
+				</div>
+			</div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="section-title">
+                    
+                    <div class="contact-info">
+                        <h4 style="font-size: 41px">معلومات الاتصال</h4>
+                        <p>العنوان: شارع التقنية، جدة، السعودية</p>
+                        <p>الهاتف: +123 456 789</p>
+                        <p>البريد الإلكتروني: info@kidsteck.com</p>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-6">
+                <div class="contact-map">
+                    <img src="{{ asset('site/images/map-placeholder.webp') }}" class="w-75 img-fluid" alt="خريطة الموقع">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
