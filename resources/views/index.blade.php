@@ -120,6 +120,34 @@
 </div>
 
 
+
+  
+
+<section class="top-kids py-2">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2>الأطفال المتميزون</h2>
+            <p style="color: #666;">تعرف على الأطفال الحاصلين على أعلى النقاط في المنصة!</p>
+        </div>
+        <div class="row justify-content-center">
+            @foreach($topKids as $item)
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card text-center p-4 border-0" style="background-color: #ffeaa7; border-radius: 20px;">
+                        <div class="card-body">
+                            <i class="fas fa-child fa-4x mb-3" style="color: #ffa502;"></i>
+                            <h5 class="card-title" style="font-weight: bold;">{{ $item->user->name }}</h5>
+                            <p class="card-text text-muted">النقاط: {{ $item->total_points }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+
+
 <section class="contact-us" id="contact-us">
     <div class="container">
         <div class="row">
