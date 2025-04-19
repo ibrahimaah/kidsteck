@@ -64,7 +64,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('admin/admin/users', [UserController::class, 'index'])->name('admin.users');
     Route::post('store-user', [UserController::class, 'store'])->name('store_user');
     Route::get('admin/edit-user/{id}', [UserController::class, 'edit'])->name('edit_user');
-    Route::put('update-user/{id}', [UserController::class, 'update'])->name('update_user');
+    Route::put('update-user/{user}', [UserController::class, 'update'])->name('update_user');
     Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     //Stories

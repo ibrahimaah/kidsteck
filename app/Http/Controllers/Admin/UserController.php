@@ -71,7 +71,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users')->with('success', 'تم تعديل بيانات المستخدم بنجاح');
     }
 
     public function destroy(User $user)

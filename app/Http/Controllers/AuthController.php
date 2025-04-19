@@ -64,6 +64,8 @@ class AuthController extends Controller
                 return redirect()->route('parent.dashboard');
             } elseif (auth()->user()->is_volunteer()) {
                 return redirect()->route('volunteer.dashboard');
+            } elseif (auth()->user()->is_admin()) {
+                return redirect()->route('admin_dashboard');
             }
             return redirect()->route('home');
         }
