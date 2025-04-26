@@ -33,7 +33,7 @@
                 <tr>
                     <td class="align-middle">{{ $loop->iteration }}</td>
                     <td class="align-middle">{{ $part->title }}</td>
-                    <td class="align-middle">{{ Str::limit($part->description, 50) }}</td>
+                    <td class="align-middle">{{ Str::limit($part->description, 30) }}</td>
                     <td class="align-middle">
                         @if($part->hasMedia('videos'))
                             <a href="{{ $part->getFirstMediaUrl('videos') }}" target="_blank">عرض الفيديو</a>

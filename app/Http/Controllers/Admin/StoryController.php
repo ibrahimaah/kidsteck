@@ -39,7 +39,7 @@ class StoryController extends Controller
             'description' => $validated['description'],
             'target_age' => $validated['target_age'],
             'added_by' => 'admin',
-            'status' => 'accepted'
+            // 'status' => 'accepted'
         ]);
 
         // Handle cover image upload using Spatie Media Library

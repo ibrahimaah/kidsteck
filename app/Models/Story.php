@@ -21,7 +21,7 @@ class Story extends Model implements HasMedia
         'volunteer_id',
         'category_id',
         'is_active',
-        'status'
+        // 'status'
     ];
 
     public function parts()

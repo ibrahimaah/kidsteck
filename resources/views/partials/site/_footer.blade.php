@@ -20,15 +20,9 @@
 			</div>
 			<!-- col-md-4 -->
 			<div class="col-sm-4 text-center">
-				<h4>أحدث القصص</h4>
-				<ul class="footer-link">
-					@foreach ($stories as $story)
-						@if($loop->iteration == 4)
-							@continue
-						@endif 
-						<li class="nav-item"><a href="{{ route('stories.show',$story->id) }}" class="nav-link">{{ $story->title }}</a></li> 
-					@endforeach
-				</ul>
+				<h4 class="mb-0">تواصل معنا</h4>
+				<p>info@kidsteck.com</p>
+
 			</div>
 			<!-- col-md-4 -->
 			 

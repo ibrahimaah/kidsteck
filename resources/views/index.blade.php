@@ -51,7 +51,7 @@
                 <div class="about-text text-start">
                     <h4>مرحبًا بكم في Kidsteck</h4>
                     <p>في Kidsteck، نؤمن أن تعلم البرمجة يجب أن يكون ممتعًا وجذابًا! نقدم منصة فريدة حيث يمكن للأطفال استكشاف مفاهيم البرمجة من خلال قصص مثيرة واختبارات تفاعلية. هدفنا هو جعل التعلم سهلاً، ممتعًا، ومجزًا للعقول الصغيرة.</p>
-                    <a class="btn btn-primary kids-active-btn" href="#">اعرف المزيد</a>
+                    
                 </div>
             </div>
 			<div class="col-12 col-md-6 col-lg-6">
@@ -148,34 +148,5 @@
 
 
 
-<section class="contact-us" id="contact-us">
-    <div class="container">
-        <div class="row">
-			<div class="col-12 col-md-12 col-lg-12">
-				<div class="section-title">
-					<h2>تواصل معنا</h2>
-				</div>
-			</div>
-        </div>
-        <div class="row">
-            
-            <div class="col-md-6">
-                <div class="section-title">
-                    
-                    <div class="contact-info">
-                        <h4 style="font-size: 41px">معلومات الاتصال</h4>
-                        <p>العنوان: شارع التقنية، جدة، السعودية</p>
-                        <p>الهاتف: +123 456 789</p>
-                        <p>البريد الإلكتروني: info@kidsteck.com</p>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-md-6">
-                <div class="contact-map">
-                    <img src="{{ asset('site/images/map-placeholder.webp') }}" class="w-75 img-fluid" alt="خريطة الموقع">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 @endsection
