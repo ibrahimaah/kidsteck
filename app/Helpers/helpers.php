@@ -68,7 +68,8 @@ if (!function_exists('awardPoints')) {
         function calc_progress($user_id,$story_id)
         {
             $story = Story::find($story_id);
-            $story_part_user = StoryPartUser::where('user_id' , $user_id)->get();
+            $storyPartsIds = $story->parts()->pluck('id');
+            $story_part_user = StoryPartUser::where('user_id' , $user_id)->whereIn('story_part_id',$storyPartsIds)->get();
 
             if($story_part_user->isEmpty())
             {
